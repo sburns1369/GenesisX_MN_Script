@@ -11,4 +11,4 @@ Will resume working on this through the week. Working with out problem on Vultr 
 
 Sync time is around 2 hours.
 
-If you only need to run a single MN type "none" for 2nd masternode private key; or you can add it later.
+If you only need to run a single MN type "none" for 2nd masternode private key; you can add it later if you add a second MN
