@@ -1,4 +1,3 @@
-@@ -0,0 +1,112 @@
 #!/bin/bash
 #ScriptVersion 0.05b
 COIN=GenesisX
