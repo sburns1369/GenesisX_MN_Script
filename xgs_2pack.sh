@@ -126,7 +126,7 @@ echo -e "${BOLD}For MN#2- genesisx-cli -datadir=/home/genesisx2/.genesisx mnsync
 echo -e
 echo -e "You can check the status of your masternode with"
 echo -e "${BOLD}For MN#1- genesisx-cli -datadir=/home/genesisx/.genesisx masternode status"${CLEAR}
-echo -e "${BOLD}For MN#2- genesisx-cli -datadir=/home/genesisx/.genesisx masternode status"${CLEAR}
+echo -e "${BOLD}For MN#2- genesisx-cli -datadir=/home/genesisx2/.genesisx masternode status"${CLEAR}
 echo
 echo ${BOLD}${BLUE}"Your patronage is apprappreciated, tipping addresses"${CLEAR}
 echo ${BLUE}"GenesisxNet address: GZXonqnH2cjPgQZL59urDZS2CBzxPzoQ1j"${CLEAR}
