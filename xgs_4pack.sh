@@ -20,7 +20,7 @@ if [[ $(lsb_release -d) != *16.04* ]]; then
   echo -e ${RED}"The operating system is not Ubuntu 16.04. You must be running on ubuntu 16.04."${CLEAR}
   exit 1
 fi
-echo -e ${GREEN}"Are you sure you want to continue installation of a GenesisX Masternode?"
+echo -e ${GREEN}"Are you sure you want to continue installation of Four GenesisX Masternode?"
 echo -e "type y/n followed by [ENTER]:"${CLEAR}
 read AGREE
 if [[ $AGREE =~ "y" ]] ; then
