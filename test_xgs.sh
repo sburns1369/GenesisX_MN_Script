@@ -15,17 +15,22 @@ if [[ $(lsb_release -d) != *16.04* ]]; then
   exit 1
 fi
 #Menu to Confirm and Pull correct script
+echo
+echo
+echo
 echo -e ${YELLOW}"Welcome to the $Coin Beta Automated Install Script by NullEntry"${CLEAR}
 echo -e ${YELLOW}'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND'${CLEAR}
 echo -e ${YELLOW}"Durring this Process Please Hit Enter or Input What is Asked."${CLEAR}
 echo
-echo -e ${GREEN}"Are you sure you want to install $COIN Masternode? type y/n followed by [ENTER]:"${CLEAR}
+echo -e ${GREEN}"Are you sure you want to install a $COIN Masternode(s)?"${CLEAR}
+echo -e ${GREEN} "Press "y" for yes, and "n"for no followed by [ENTER]:"${CLEAR}
 read AGREE
 if [[ $AGREE =~ "y" ]] ; then
-echo -e ${GREEN}"Please enter the number (1-4) of $COIN Masternode(s) you would like to install :"${CLEAR}
+echo -e ${GREEN}"Please enter the number (1-4) of $COIN Masternode(s)"${CLEAR}
+echo -e ${GREEN}"you would like to install :"${CLEAR}
 read NUMBER
 case $NUMBER in
-  1)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_single.sh);;
+  1)curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_single.sh);;
   2)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_2pack.sh);;
   3)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_3pack.sh);;
   4)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_4pack.sh);;
