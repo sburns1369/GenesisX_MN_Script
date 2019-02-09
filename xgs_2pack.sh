@@ -5,7 +5,6 @@ COINPORT=5555
 COINRPCPORT=19012
 COINDAEMON=genesisd
 COINDAEMONCLI=genesis-cli
-COINDAEMONTX=genesis-tx
 COINCORE=.genesis
 COINCONFIG=genesis.conf
 #Setting Colors
@@ -132,6 +131,8 @@ echo ${BOLD}${BLUE}"Your patronage is apprappreciated, tipping addresses"${CLEAR
 echo ${BLUE}"GenesisxNet address: GZXonqnH2cjPgQZL59urDZS2CBzxPzoQ1j"${CLEAR}
 echo ${BLUE}"LTC address: MUdDdVr4Az1dVw47uC4srJ31Ksi5SNkC7H"${CLEAR}
 echo ${BLUE}"BTC address: 32FzghE1yUZRdDmCkj3bJ6vJyXxUVPKY93"${CLEAR}
+echo
+echo "Need help?  Find Sburns1369#1584 one Discord - https://discord.gg/YhJ8v3g"
 echo
 echo
 echo ${RED}"The END."${CLEAR};
