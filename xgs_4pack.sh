@@ -165,11 +165,13 @@ echo -e ${BOLD}${YELLOW}"If you become disconnected, you can check the status of
 echo -e "${BOLD}For MN#1- genesisx-cli -datadir=/home/genesisx/.genesisx mnsync status"${CLEAR}
 echo -e "${BOLD}For MN#2- genesisx-cli -datadir=/home/genesisx2/.genesisx mnsync status"${CLEAR}
 echo -e "${BOLD}For MN#3- genesisx-cli -datadir=/home/genesisx3/.genesisx mnsync status"${CLEAR}
+echo -e "${BOLD}For MN#3- genesisx-cli -datadir=/home/genesisx4/.genesisx mnsync status"${CLEAR}
 echo -e
 echo -e ${BOLD}${YELLOW}"You can check the status of your masternode with"${CLEAR}
 echo -e "${BOLD}For MN#1- genesisx-cli -datadir=/home/genesisx/.genesisx masternode status"${CLEAR}
 echo -e "${BOLD}For MN#2- genesisx-cli -datadir=/home/genesisx2/.genesisx masternode status"${CLEAR}
 echo -e "${BOLD}For MN#3- genesisx-cli -datadir=/home/genesisx3/.genesisx masternode status"${CLEAR}
+echo -e "${BOLD}For MN#3- genesisx-cli -datadir=/home/genesisx4/.genesisx masternode status"${CLEAR}
 echo
 fi
 echo ${BOLD}${BLUE}"Your patronage is apprappreciated, tipping addresses"${CLEAR}
