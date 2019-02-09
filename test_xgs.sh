@@ -23,7 +23,7 @@ echo -e ${YELLOW}'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND
 echo -e ${YELLOW}"Durring this Process Please Hit Enter or Input What is Asked."${CLEAR}
 echo
 echo -e ${GREEN}"Are you sure you want to install a $COIN Masternode(s)?"${CLEAR}
-echo -e ${GREEN} "Press 'y' for yes, and 'n' for no followed by [ENTER]:"${CLEAR}
+echo -e ${GREEN} "Press y for yes, and n for no followed by [ENTER]:"${CLEAR}
 read AGREE
 if [[ $AGREE =~ "y" ]] ; then
 echo -e ${GREEN}"Please enter the number (1-4) of $COIN Masternode(s)"${CLEAR}
