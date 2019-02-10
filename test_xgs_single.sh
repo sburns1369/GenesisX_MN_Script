@@ -62,11 +62,10 @@ sudo adduser --system --home /home/${COINl} ${COINl}
 cd ~
 if [[ $NULLREC =~ "y" ]] ; then
   if [ ! -d /usr/local/nullentrydev/ ]; then
-
-    -echo "Making /usr/local/nullentrydev "
+    echo "Making /usr/local/nullentrydev "
     sudo mkdir /usr/local/nullentrydev
   else
-    -echo "Found /usr/local/nullentrydev "
+    echo "Found /usr/local/nullentrydev "
   fi
   if [ ! -f /usr/local/nullentrydev/${COIN3l}.log ]; then
     echo "Making /usr/local/nullentrydev/${COIN3l}.log"
@@ -75,7 +74,10 @@ if [[ $NULLREC =~ "y" ]] ; then
     echo "Found /usr/local/nullentrydev/${COIN3l}.log"
   fi
   if [ ! -f /usr/local/nullentrydev/mnodes.log ]; then
+    echo "Making touch /usr/local/nullentrydev/mnodes.log"
     sudo touch /usr/local/nullentrydev/mnodes.log
+  else
+    echo "Found touch /usr/local/nullentrydev/mnodes.log"
   fi
 fi
 echo "Updating Apps"
@@ -84,9 +86,9 @@ sudo apt-get -y upgrade
 ### Checking to see if Dependencies & Software Libraries have been installed ###
 if grep -Fxq "dependenciesInstalled: true" sudo /usr/local/nullentrydev/mnodes.log
 then
-    echo "Skipping... Dependencies & Software Libraries - Previously installed"# code if found
+    echo ${RED}"Skipping... Dependencies & Software Libraries - Previously installed"${CLEAR}# code if found
 else
-  echo "Installing Dependencies & Software Libraries"
+  echo ${RED}"Installing Dependencies & Software Libraries"${CLEAR}
   sudo apt-get -y install software-properties-common
   sudo apt-get -y install build-essential
   echo -e ${YELLOW} "This script was written in the dark"${CLEAR}
