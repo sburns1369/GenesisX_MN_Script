@@ -171,50 +171,85 @@ fi
 sleep 5
 echo
 # Starting First Masternode daemon
-echo -e ${BOLD}"Launching Only ${COIN3} Node"${CLEAR}
+echo -e ${BOLD}"Launching First ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}/.${COINl} -daemon
 sleep 60
 # Second Node Configuration and launch
-echo -e "${GREEN}Configuring Second node${CLEAR}"
-sudo mkdir /home/${COINl}/.${COINl}
-sudo touch /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "rpcpassword=pass"`shuf -i 100000-10000000 -n 1` >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "rpcallowip=127.0.0.1" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "server=1" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "daemon=1" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "maxconnections=250" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "masternode=1" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "rpcport=$COINPORT" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "listen=0" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "externalip=$(hostname  -I | cut -f1 -d' '):$COINPORT" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "masternodeprivkey=$privkey" >> /home/${COINl}/.${COINl}/${COINCONFIG}
+echo -e "${GREEN}Configuring Second Node${CLEAR}"
+sudo mkdir /home/${COINl}2/.${COINl}
+sudo touch /home/${COINl}2/.${COINl}/${COINCONFIG}
+echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> /home/${COINl}2/.${COINl}/${COINCONFIG}
+echo "rpcpassword=pass"`shuf -i 100000-10000000 -n 1` >> /home/${COINl}2/.${COINl}/${COINCONFIG}
+echo "rpcallowip=127.0.0.1" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
+echo "server=1" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
+echo "daemon=1" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
+echo "maxconnections=250" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
+echo "masternode=1" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
+echo "rpcport=$COINPORT2" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
+echo "listen=0" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
+echo "externalip=$(hostname  -I | cut -f1 -d' '):$COINPORT" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
+echo "masternodeprivkey=$privkey2" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
 # Inserting Version to nullentrydev files
 if [[ $NULLREC = "y" ]] ; then
-  echo "masterNode1 : true" >> /usr/local/nullentrydev/${COIN3l}.log
-  echo "walletVersion1 : $COINVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
-  echo "scriptVersion1 : $SCRIPTVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
+  echo "masterNode2 : true" >> /usr/local/nullentrydev/${COIN3l}.log
+  echo "walletVersion2 : $COINVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
+  echo "scriptVersion2 : $SCRIPTVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
 fi
 sleep 5
 echo
 # Starting Second Masternode daemon
-echo -e ${BOLD}"Launching Only ${COIN3} Node"${CLEAR}
-${COINDAEMON} -datadir=/home/${COINl}/.${COINl} -daemon
+echo -e ${BOLD}"Launching Second ${COIN3} Node"${CLEAR}
+${COINDAEMON} -datadir=/home/${COINl}2/.${COINl} -daemon
+sleep 60
+# Third Node Configuration and launch
+echo -e "${GREEN}Configuring Second Node${CLEAR}"
+sudo mkdir /home/${COINl}3/.${COINl}
+sudo touch /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "rpcpassword=pass"`shuf -i 100000-10000000 -n 1` >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "rpcallowip=127.0.0.1" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "server=1" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "daemon=1" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "maxconnections=250" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "masternode=1" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "rpcport=$COINPORT3" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "listen=0" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "externalip=$(hostname  -I | cut -f1 -d' '):$COINPORT" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "masternodeprivkey=$privkey3" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+# Inserting Version to nullentrydev files
+if [[ $NULLREC = "y" ]] ; then
+  echo "masterNode3 : true" >> /usr/local/nullentrydev/${COIN3l}.log
+  echo "walletVersion3 : $COINVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
+  echo "scriptVersion3 : $SCRIPTVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
+fi
+sleep 5
+echo
+# Starting Third Masternode daemon
+echo -e ${BOLD}"Launching Third ${COIN3} Node"${CLEAR}
+${COINDAEMON} -datadir=/home/${COINl}3/.${COINl} -daemon
 sleep 60
 
+
+
 echo
-echo -e ${BOLD}"${COIN3} Node Launched, please wait for it to sync".${CLEAR}
+echo -e ${BOLD}"Second ${COIN3} Node Launched, please wait for it to sync".${CLEAR}
 echo
-echo -e "${BOLD}Your Masternode is sync'ing this will take some time."${CLEAR}
+echo -e "${BOLD}Your Masternodes are sync'ing this will take some time."${CLEAR}
 echo -e "While you wait you can configure your masternode.conf in your local wallet"${CLEAR}
 echo -e "The data below needs to be in your local masternode configuration file:${CLEAR}"
 echo -e "${BOLD} Masternode_IP: $(hostname  -I | cut -f1 -d' '):${COINPORT}${CLEAR}"
 echo
 echo -e ${BOLD} "If you become disconnected, you can check the status of sync'ing with"${CLEAR}
 echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status"${CLEAR}
+echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}2/.${COINl} mnsync status"${CLEAR}
+echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}3/.${COINl} mnsync status"${CLEAR}
+echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}4/.${COINl} mnsync status"${CLEAR}
 echo -e
 echo -e ${BOLD}"You can check the status of your ${COIN3} Masternode with"${CLEAR}
 echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} masternode status"${CLEAR}
+echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}2/.${COINl} masternode status"${CLEAR}
+echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}3/.${COINl} masternode status"${CLEAR}
+echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}4/.${COINl} masternode status"${CLEAR}
 echo
 fi
 echo -e ${BLUE}" Your patronage is apprappreciated, tipping addresses"${CLEAR}
