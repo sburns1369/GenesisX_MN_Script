@@ -1,5 +1,5 @@
 #!/bin/bash
-#ScriptVersion 0.07a
+SCRIPTVERSION= 0.7c
 COIN=GenesisX
 COINl=genesisx
 COIN3=XGS
@@ -10,7 +10,9 @@ COINDAEMON=genesisxd
 COINDAEMONCLI=genesisx-cli
 COINCORE=.genesisx
 COINCONFIG=genesisx.conf
-#NULLREC = Permission to Record nullentrydev
+COINVERSION=1.4.0
+#AGREE = Agree to install Masternode
+#NULLREC = Agree to Record nullentrydev information
 #Setting Colors
 BLUE='\033[0;36m'
 GREEN='\033[0;92m'
@@ -35,10 +37,11 @@ echo
 echo
 echo
 echo
-echo -e ${BLUE}"May this script store a small amount data in /usr/local/nullentrydev/ ?"${CLEAR}
+# Permission to Store/Make nullentrydev files ####
+echo -e ${BLUE}"May this script will store a small amount data in /usr/local/nullentrydev/ ?"${CLEAR}
 echo -e ${BLUE}"This information is for version updates and later implimentation"${CLEAR}
 echo -e ${BLUE}"Zero Confidental information or Wallet keys will be stored"${CLEAR}
-echo -e ${YELLOW}"type y/n followed by [ENTER]:"${CLEAR}
+echo -e ${YELLOW}"Press y to agree followed by [ENTER], or [ENTER] to disagree"${CLEAR}
 read NULLREC
 echo
 echo
@@ -58,7 +61,7 @@ read privkey
 echo
 echo "Creating a single ${COIN} system users with no-login access:"
 sudo adduser --system --home /home/${COINl} ${COINl}
-### Checking For nullentrydev install information
+# Checking For nullentrydev install information
 cd ~
 if [[ $NULLREC =~ "y" ]] ; then
   if [ ! -d /usr/local/nullentrydev/ ]; then
@@ -74,19 +77,19 @@ if [[ $NULLREC =~ "y" ]] ; then
     echo "Found /usr/local/nullentrydev/${COIN3l}.log"
   fi
   if [ ! -f /usr/local/nullentrydev/mnodes.log ]; then
-    echo "Making touch /usr/local/nullentrydev/mnodes.log"
+    echo "Making /usr/local/nullentrydev/mnodes.log"
     sudo touch /usr/local/nullentrydev/mnodes.log
   else
-    echo "Found touch /usr/local/nullentrydev/mnodes.log"
+    echo "Found /usr/local/nullentrydev/mnodes.log"
   fi
 fi
 echo "Updating Apps"
 sudo apt-get -y update
 sudo apt-get -y upgrade
-### Checking to see if Dependencies & Software Libraries have been installed ###
+# Checking to see if Dependencies & Software Libraries have been installed
 if grep -Fxq "dependenciesInstalled: true" sudo /usr/local/nullentrydev/mnodes.log
 then
-    echo ${RED}"Skipping... Dependencies & Software Libraries - Previously installed"${CLEAR}# code if found
+    echo -e ${RED}"Skipping... Dependencies & Software Libraries - Previously installed"${CLEAR}# code if found
 else
   echo ${RED}"Installing Dependencies & Software Libraries"${CLEAR}
   sudo apt-get -y install software-properties-common
@@ -106,7 +109,7 @@ else
   sudo apt-get -y install libminiupnpc-dev libzmq3-dev libevent-pthreads-2.0-5
   sudo apt-get -y install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev
   sudo apt-get -y install libqrencode-dev bsdmainutils unzip
-### Recording Dependencies & Software Libraries insatllation complete
+# Recording Dependencies & Software Libraries insatllation complete
     if [[ $NULLREC =~ "y" ]] ; then
       echo "dependenciesInstalled: true" >> /usr/local/nullentrydev/mnodes.log
     fi
@@ -140,18 +143,25 @@ echo "rpcallowip=127.0.0.1" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "server=1" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "daemon=1" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "maxconnections=250" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "masternode=1" >> /home/${COINl}/.${COINl}/${COINCONFIG}m
+echo "masternode=1" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "rpcport=$COINPORT" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "listen=0" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "externalip=$(hostname  -I | cut -f1 -d' '):$COINPORT" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "masternodeprivkey=$privkey" >> /home/${COINl}/.${COINl}/${COINCONFIG}
+# Inserting Version to nullentrydev files
+if [[ $NULLREC =~ "y" ]] ; then
+  echo "masterNode1 : true" >> /usr/local/nullentrydev/${COIN3l}.log
+  echo "WalletVersion1 : $COINVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
+  echo "scriptVersion1 : $SCRIPTVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
+fi
 sleep 5
 echo
+# Starting Masternode daemon
 echo -e ${BOLD}"Launching Only ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}/.${COINl} -daemon
 sleep 60
 echo
-echo -e ${BOLD}"Node Launched, please wait for it to sync".${CLEAR}
+echo -e ${BOLD}"${COIN3} Node Launched, please wait for it to sync".${CLEAR}
 echo
 echo -e "${BOLD}Your Masternode is sync'ing this will take some time."${CLEAR}
 echo -e "While you wait you can configure your masternode.conf in your local wallet"${CLEAR}
@@ -166,7 +176,7 @@ echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mastern
 echo
 fi
 echo -e ${BLUE}" Your patronage is apprappreciated, tipping addresses"${CLEAR}
-echo -e ${BLUE}" ${COIN} address: BoEsUmcS3D9gVmdxvj7Che4wD1SAHa2zG9"${CLEAR}
+echo -e ${BLUE}" ${COIN} address: GZXonqnH2cjPgQZL59urDZS2CBzxPzoQ1j"${CLEAR}
 echo -e ${BLUE}" LTC address: MUdDdVr4Az1dVw47uC4srJ31Ksi5SNkC7H"${CLEAR}
 echo -e ${BLUE}" BTC address: 32FzghE1yUZRdDmCkj3bJ6vJyXxUVPKY93"${CLEAR}
 echo
