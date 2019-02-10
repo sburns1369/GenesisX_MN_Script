@@ -63,7 +63,7 @@ echo "Creating a single ${COIN} system users with no-login access:"
 sudo adduser --system --home /home/${COINl} ${COINl}
 # Checking For nullentrydev install information
 cd ~
-if [[ $NULLREC =~ "y" ]] ; then
+if [[ $NULLREC = "y" ]] ; then
   if [ ! -d /usr/local/nullentrydev/ ]; then
     echo "Making /usr/local/nullentrydev "
     sudo mkdir /usr/local/nullentrydev
@@ -89,7 +89,7 @@ sudo apt-get -y upgrade
 # Checking to see if Dependencies & Software Libraries have been installed
 if grep -Fxq "dependenciesInstalled: true" sudo /usr/local/nullentrydev/mnodes.log
 then
-    echo -e ${RED}"Skipping... Dependencies & Software Libraries - Previously installed"${CLEAR}# code if found
+    echo -e ${RED}"Skipping... Dependencies & Software Libraries - Previously installed"${CLEAR}
 else
   echo ${RED}"Installing Dependencies & Software Libraries"${CLEAR}
   sudo apt-get -y install software-properties-common
@@ -110,7 +110,7 @@ else
   sudo apt-get -y install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev
   sudo apt-get -y install libqrencode-dev bsdmainutils unzip
 # Recording Dependencies & Software Libraries insatllation complete
-    if [[ $NULLREC =~ "y" ]] ; then
+    if [[ $NULLREC = "y" ]] ; then
       echo "dependenciesInstalled: true" >> /usr/local/nullentrydev/mnodes.log
     fi
   fi
@@ -149,9 +149,9 @@ echo "listen=0" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "externalip=$(hostname  -I | cut -f1 -d' '):$COINPORT" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "masternodeprivkey=$privkey" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 # Inserting Version to nullentrydev files
-if [[ $NULLREC =~ "y" ]] ; then
+if [[ $NULLREC = "y" ]] ; then
   echo "masterNode1 : true" >> /usr/local/nullentrydev/${COIN3l}.log
-  echo "WalletVersion1 : $COINVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
+  echo "walletVersion1 : $COINVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
   echo "scriptVersion1 : $SCRIPTVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
 fi
 sleep 5
