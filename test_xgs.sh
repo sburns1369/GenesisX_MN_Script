@@ -1,5 +1,5 @@
 #!/bin/bash
-#ScriptVersion 0.06a
+#ScriptVersion 0.0.7c
 #setting varibles
 COIN=GenesisX
 COIN3l=xgs
