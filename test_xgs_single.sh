@@ -157,7 +157,7 @@ fi
 sleep 5
 echo
 # Starting Masternode daemon
-echo -e ${BOLD}"Launching Only ${COIN3} Node"${CLEAR}
+echo -e ${BOLD}"Launching ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}/.${COINl} -daemon
 sleep 60
 echo
