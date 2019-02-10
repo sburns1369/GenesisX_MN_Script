@@ -1,5 +1,5 @@
 #!/bin/bash
-#ScriptVersion 0.06b
+#ScriptVersion 0.07a
 COIN=GenesisX
 COINl=genesisx
 COIN3=XGS
@@ -32,18 +32,25 @@ echo -e "type y/n followed by [ENTER]:"${CLEAR}
 read AGREE
 if [[ $AGREE =~ "y" ]] ; then
 echo
-echo -e ${GREEN}"May this script store a small amount data in /usr/local/nullentrydev/ ?"${CLEAR}
-echo -e ${GREEN}"This information is for version updates and later implimentation"${CLEAR}
-echo -e ${GREEN}"Zero Confidental information or Wallet keys will be stored"${CLEAR}
+echo
+echo
+echo
+echo -e ${BLUE}"May this script store a small amount data in /usr/local/nullentrydev/ ?"${CLEAR}
+echo -e ${BLUE}"This information is for version updates and later implimentation"${CLEAR}
+echo -e ${BLUE}"Zero Confidental information or Wallet keys will be stored"${CLEAR}
+echo -e ${YELLOW}"type y/n followed by [ENTER]:"${CLEAR}
 read NULLREC
 echo
-echo -e ${GREEN}"Your Masternode Private Key is needed,"${CLEAR}
+echo
+echo
+echo
+echo
+echo -e ${RED}"Your Masternode Private Key is needed,"${CLEAR}
 echo -e ${GREEN}" -which can be generated from the local wallet"${CLEAR}
 echo
 echo -e ${YELLOW}"You can edit the config later if you don't have this"${CLEAR}
 echo -e ${YELLOW}"Masternode may fail to start with invalid key"${CLEAR}
-echo
-echo -e ${GREEN}"Right Click to paste in some SSH Clients"${CLEAR}
+echo -e "Right Click to paste in some SSH Clients"
 echo
 echo
 echo -e ${GREEN}"Please Enter Your Masternode Private Key:"${CLEAR}
@@ -93,7 +100,7 @@ else
     if [[ NULLREC =~ "y" ]] ; then
       echo "dependenciesInstalled: true" >> /usr/local/nullentrydev/mnodes.log
     fi
-fi
+  fi
 cd /var
 sudo touch swap.img
 sudo chmod 600 swap.img
@@ -101,15 +108,22 @@ echo -e ${YELLOW} "You should check out https://www.youtube.com/watch?v=lMDOGbYO
 sudo dd if=/dev/zero of=/var/swap.img bs=1024k count=4096
 sudo mkswap /var/swap.img
 sudo swapon /var/swap.img
+echo -e "Dev Pause"
+read PAUSE
 cd ~
-sudo mkdir /root/${COIN3l}
+if [ ! -d /root/${COIN3l} ]; then
+  sudo mkdir /root/${COIN3l}
+fi
 cd /root/${COIN3l}
+echo -e "Dev Pause"
+read PAUSE
 echo "Downloading latest binaries"
 wget https://github.com/genesis-x/genesis-x/files/2799605/genesisx-linux.zip
 unzip genesisx-linux.zip
+sleep 10
 sudo mv /root/${COIN3l}/${COINDAEMON} /root/${COIN3l}/${COINDAEMONCLI} /usr/local/bin
 sudo chmod 755 -R  /usr/local/bin/${COINl}*
-rm -rf /root/${COIN3l}
+rm -rf /roocdt/${COIN3l}
 # First Node Configuration and launch
 echo -e "${GREEN}Configuring node${CLEAR}"
 sudo mkdir /home/${COINl}/.${COINl}
@@ -120,7 +134,7 @@ echo "rpcallowip=127.0.0.1" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "server=1" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "daemon=1" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "maxconnections=250" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "masternode=1" >> /home/${COINl}/.${COINl}/${COINCONFIG}
+echo "masternode=1" >> /home/${COINl}/.${COINl}/${COINCONFIG}m
 echo "rpcport=$COINPORT" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "listen=0" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "externalip=$(hostname  -I | cut -f1 -d' '):$COINPORT" >> /home/${COINl}/.${COINl}/${COINCONFIG}
