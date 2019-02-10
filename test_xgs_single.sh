@@ -9,7 +9,7 @@ COINRPCPORT1=19012
 COINDAEMON=genesisxd
 COINDAEMONCLI=genesisx-cli
 COINCORE=.genesisx
-COINCONFIG=genesis.conf
+COINCONFIG=genesisx.conf
 #NULLREC = Permission to Record nullentrydev
 #Setting Colors
 BLUE='\033[0;36m'
@@ -59,9 +59,10 @@ echo
 echo "Creating a single ${COIN} system users with no-login access:"
 sudo adduser --system --home /home/${COINl} ${COINl}
 ### Checking For nullentrydev install information
+cd ~
 if [[ NULLREC =~ "y" ]] ; then
-  if [ ! -d /usr/local/nullentrydev/ ]; then
-    sudo mkdir /usr/local/nullentrydev/
+  if [ ! -d /usr/local/nullentrydev ]; then
+    sudo mkdir /usr/local/nullentrydev
     echo "Dir - /usr/local/nullentrydev/ EXIST"
   fi
   if [ ! -f /usr/local/nullentrydev/${COIN3l}.log ]; then
@@ -109,19 +110,15 @@ echo -e ${YELLOW} "You should check out https://www.youtube.com/watch?v=lMDOGbYO
 sudo dd if=/dev/zero of=/var/swap.img bs=1024k count=4096
 sudo mkswap /var/swap.img
 sudo swapon /var/swap.img
-echo -e "Dev Pause"
-read PAUSE
 cd ~
 if [ ! -d /root/${COIN3l} ]; then
   sudo mkdir /root/${COIN3l}
 fi
 cd /root/${COIN3l}
-echo -e "Dev Pause"
-read PAUSE
 echo "Downloading latest binaries"
 wget https://github.com/genesis-x/genesis-x/files/2799605/genesisx-linux.zip
 unzip genesisx-linux.zip
-sleep 10
+sleep 3
 sudo mv /root/${COIN3l}/${COINDAEMON} /root/${COIN3l}/${COINDAEMONCLI} /usr/local/bin
 sudo chmod 755 -R  /usr/local/bin/${COINl}*
 rm -rf /roocdt/${COIN3l}
