@@ -3,10 +3,10 @@
 COIN=GenesisX
 COINPORT=5555
 COINRPCPORT=19012
-COINDAEMON=genesisd
-COINDAEMONCLI=genesis-cli
-COINCORE=.genesis
-COINCONFIG=genesis.conf
+COINDAEMON=genesisxd
+COINDAEMONCLI=genesisx-cli
+COINCORE=.genesisx
+COINCONFIG=genesisx.conf
 #Setting Colors
 BLUE='\033[0;96m'
 GREEN='\033[0;92m'
