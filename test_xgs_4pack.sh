@@ -42,8 +42,8 @@ echo
 # Permission to Store/Make nullentrydev files ####
 echo -e ${BLUE}"May this script will store a small amount data in /usr/local/nullentrydev/ ?"${CLEAR}
 echo -e ${BLUE}"This information is for version updates and later implimentation"${CLEAR}
-echo -e ${BLUE}"Zero Confidental information or Wallet keys will be stored"${CLEAR}
-echo -e ${YELLOW}"Press y to agree followed by [ENTER], or [ENTER] to disagree"${CLEAR}
+echo -e ${BLUE}"Zero Confidental information or Wallet keys will be stored in it"${CLEAR}
+echo -e ${YELLOW}"Press y to agree followed by [ENTER], or just [ENTER] to disagree"${CLEAR}
 read NULLREC
 echo
 echo
@@ -97,18 +97,17 @@ if [[ $NULLREC = "y" ]] ; then
     echo "Found /usr/local/nullentrydev/mnodes.log"
   fi
 fi
-echo "Updating Apps"
+echo ${RED}"Updating Apps"${CLEAR}
 sudo apt-get -y update
 sudo apt-get -y upgrade
 # Checking to see if Dependencies & Software Libraries have been installed
-if grep -Fxq "dependenciesInstalled: true" sudo /usr/local/nullentrydev/mnodes.log
+if grep -Fxq "dependenciesInstalled: true" /usr/local/nullentrydev/mnodes.log
 then
     echo -e ${RED}"Skipping... Dependencies & Software Libraries - Previously installed"${CLEAR}
 else
   echo ${RED}"Installing Dependencies & Software Libraries"${CLEAR}
   sudo apt-get -y install software-properties-common
   sudo apt-get -y install build-essential
-  echo -e ${YELLOW} "This script was written in the dark"${CLEAR}
   sudo apt-get -y install libtool autotools-dev autoconf automake
   sudo apt-get -y install libssl-dev
   sudo apt-get -y install libevent-dev
@@ -140,7 +139,7 @@ if [ ! -d /root/${COIN3l} ]; then
   sudo mkdir /root/${COIN3l}
 fi
 cd /root/${COIN3l}
-echo "Downloading latest binaries"
+echo "Downloading latest ${COIN} binaries"
 wget https://github.com/genesis-x/genesis-x/files/2799605/genesisx-linux.zip
 unzip genesisx-linux.zip
 sleep 3
@@ -241,7 +240,7 @@ echo "maxconnections=250" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
 echo "masternode=1" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
 echo "rpcport=$COINPORT4" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
 echo "listen=0" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
-echo "externalip=$(hostname  -I | cut -f1 -d' '):$COINPORT" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "externalip=$(hostname  -I | cut -f1 -d' '):$COINPORT" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
 echo "masternodeprivkey=$privkey4" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
 # Inserting Version to nullentrydev files
 if [[ $NULLREC = "y" ]] ; then
