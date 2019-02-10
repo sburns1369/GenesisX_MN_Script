@@ -62,10 +62,17 @@ sudo adduser --system --home /home/${COINl} ${COINl}
 cd ~
 if [[ $NULLREC =~ "y" ]] ; then
   if [ ! -d /usr/local/nullentrydev/ ]; then
+
+    -echo "Making /usr/local/nullentrydev "
     sudo mkdir /usr/local/nullentrydev
+  else
+    -echo "Found /usr/local/nullentrydev "
   fi
   if [ ! -f /usr/local/nullentrydev/${COIN3l}.log ]; then
+    echo "Making /usr/local/nullentrydev/${COIN3l}.log"
     sudo touch /usr/local/nullentrydev/${COIN3l}.log
+  else
+    echo "Found /usr/local/nullentrydev/${COIN3l}.log"
   fi
   if [ ! -f /usr/local/nullentrydev/mnodes.log ]; then
     sudo touch /usr/local/nullentrydev/mnodes.log
