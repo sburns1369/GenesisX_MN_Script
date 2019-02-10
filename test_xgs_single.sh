@@ -61,9 +61,11 @@ sudo adduser --system --home /home/${COINl} ${COINl}
 ### Checking For nullentrydev install information
 cd ~
 if [[ NULLREC =~ "y" ]] ; then
-  if [ ! -d /usr/local/nullentrydev ]; then
+  if [ -d /usr/local/nullentrydev ]; then
+    echo "Dir - /usr/local/nullentrydev EXIST"
+  else
     sudo mkdir /usr/local/nullentrydev
-    echo "Dir - /usr/local/nullentrydev/ EXIST"
+    echo "Dir - /usr/local/nullentrydev MADE"
   fi
   if [ ! -f /usr/local/nullentrydev/${COIN3l}.log ]; then
     sudo touch /usr/local/nullentrydev/${COIN3l}.log
