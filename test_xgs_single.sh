@@ -60,11 +60,8 @@ echo "Creating a single ${COIN} system users with no-login access:"
 sudo adduser --system --home /home/${COINl} ${COINl}
 ### Checking For nullentrydev install information
 cd ~
-if [[ NULLREC =~ "y" ]] ; then
-  if [ -d /usr/local/nullentrydev/ ]; then
-    echo "Dir - /usr/local/nullentrydev EXIST"
-  else
-    echo "Dir - /usr/local/nullentrydev MADE"
+if [[ $NULLREC =~ "y" ]] ; then
+  if [ ! -d /usr/local/nullentrydev/ ]; then
     sudo mkdir /usr/local/nullentrydev
   fi
   if [ ! -f /usr/local/nullentrydev/${COIN3l}.log ]; then
@@ -101,7 +98,7 @@ else
   sudo apt-get -y install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev
   sudo apt-get -y install libqrencode-dev bsdmainutils unzip
 ### Recording Dependencies & Software Libraries insatllation complete
-    if [[ NULLREC =~ "y" ]] ; then
+    if [[ $NULLREC =~ "y" ]] ; then
       echo "dependenciesInstalled: true" >> /usr/local/nullentrydev/mnodes.log
     fi
   fi
