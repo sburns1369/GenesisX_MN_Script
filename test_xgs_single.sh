@@ -6,9 +6,9 @@ COIN3=XGS
 COIN3l=xgs
 COINPORT=5555
 COINRPCPORT1=19012
-COINDAEMON=genesisd
-COINDAEMONCLI=genesis-cli
-COINCORE=.genesis
+COINDAEMON=genesisxd
+COINDAEMONCLI=genesisx-cli
+COINCORE=.genesisx
 COINCONFIG=genesis.conf
 #NULLREC = Permission to Record nullentrydev
 #Setting Colors
@@ -62,6 +62,7 @@ sudo adduser --system --home /home/${COINl} ${COINl}
 if [[ NULLREC =~ "y" ]] ; then
   if [ ! -d /usr/local/nullentrydev/ ]; then
     sudo mkdir /usr/local/nullentrydev/
+    echo "Dir - /usr/local/nullentrydev/ EXIST"
   fi
   if [ ! -f /usr/local/nullentrydev/${COIN3l}.log ]; then
     sudo touch /usr/local/nullentrydev/${COIN3l}.log
