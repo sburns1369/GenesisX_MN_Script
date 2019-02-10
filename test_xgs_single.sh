@@ -37,7 +37,8 @@ echo -e ${GREEN}"This information is for version updates and later implimentatio
 echo -e ${GREEN}"Zero Confidental information or Wallet keys will be stored"${CLEAR}
 read NULLREC
 echo
-echo -e ${GREEN}"Your Masternode Private Key is needed, which is generated from the local wallet"${CLEAR}
+echo -e ${GREEN}"Your Masternode Private Key is needed,"${CLEAR}
+echo -e ${GREEN}" -which can be generated from the local wallet"${CLEAR}
 echo
 echo -e ${YELLOW}"You can edit the config later if you don't have this"${CLEAR}
 echo -e ${YELLOW}"Masternode may fail to start with invalid key"${CLEAR}
