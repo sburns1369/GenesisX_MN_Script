@@ -13,7 +13,10 @@ bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/
 
 Hit "y" to start when prompted enter masternode private key(s)
 Wait about 5 minutes, and hit enter when prompted about 5 minutes in (programming dependencies installation)
-Sync time is around 2 hours
+
+Sync time is around 3 hours for one masternodes
+Sync time was over 10 hours for all four.
+
 Check MN 1
 genesisx-cli -datadir=/home/genesisx/.genesisx mnsync status
 Check MN 2
@@ -44,7 +47,7 @@ Wait for each transaction to have 6 confirmations.
 Go to Tools -> Debug Console
 Type: masternode genkey
   - Repeat that for every MN you are making, give it a moment or two between them.
-  
+
 Type: masternode outputs
    -Match up the Genkey to the TX ID earlier and copy the the TX IDs (First set of numbers) and Index Numbers (Either 1 or a 0, after TX ID) to the notepad file.
 
@@ -119,11 +122,3 @@ Tips are always appreciated
 GenesisX address: GZXonqnH2cjPgQZL59urDZS2CBzxPzoQ1j
 LTC address: MUdDdVr4Az1dVw47uC4srJ31Ksi5SNkC7H
 BTC address: 32FzghE1yUZRdDmCkj3bJ6vJyXxUVPKY93
-
-
-
-
-
-
-
-
