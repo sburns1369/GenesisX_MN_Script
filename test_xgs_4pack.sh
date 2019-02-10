@@ -252,7 +252,7 @@ sleep 5
 echo
 # Starting Fourth Masternode daemon
 echo -e ${BOLD}"Launching Fourth ${COIN3} Node"${CLEAR}
-${COINDAEMON} -datadir=/home/${COINl}3/.${COINl} -daemon
+${COINDAEMON} -datadir=/home/${COINl}4/.${COINl} -daemon
 sleep 60
 echo
 echo -e ${BOLD}"All ${COIN3} Node Launched, please wait for it to sync".${CLEAR}
@@ -262,12 +262,11 @@ echo -e "While you wait you can configure your masternode.conf in your local wal
 echo -e "The data below needs to be in your local masternode configuration file:${CLEAR}"
 echo -e "${BOLD} Masternode_IP: $(hostname  -I | cut -f1 -d' '):${COINPORT}${CLEAR}"
 echo
-echo -e ${BOLD} "If you become disconnected, you can check the status of sync'ing with"${CLEAR}
+echo -e ${BOLD}"If you become disconnected, you can check the status of sync'ing with"${CLEAR}
 echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status"${CLEAR}
 echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}2/.${COINl} mnsync status"${CLEAR}
 echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}3/.${COINl} mnsync status"${CLEAR}
 echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}4/.${COINl} mnsync status"${CLEAR}
-echo -e
 echo -e ${BOLD}"You can check the status of your ${COIN3} Masternode with"${CLEAR}
 echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} masternode status"${CLEAR}
 echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}2/.${COINl} masternode status"${CLEAR}
@@ -281,6 +280,5 @@ echo -e ${BLUE}" LTC address: MUdDdVr4Az1dVw47uC4srJ31Ksi5SNkC7H"${CLEAR}
 echo -e ${BLUE}" BTC address: 32FzghE1yUZRdDmCkj3bJ6vJyXxUVPKY93"${CLEAR}
 echo
 echo -e ${YELLOW}"Need help?  Find Sburns1369#1584 one Discord - https://discord.gg/YhJ8v3g"${CLEAR}
-echo
 echo
 echo -e ${RED}"The END."${CLEAR};
