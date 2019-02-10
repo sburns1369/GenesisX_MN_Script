@@ -1,5 +1,5 @@
 #!/bin/bash
-SCRIPTVERSION= 0.7c
+SCRIPTVERSION=0.7c
 COIN=GenesisX
 COINl=genesisx
 COIN3=XGS
@@ -202,7 +202,7 @@ echo -e ${BOLD}"Launching Second ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}2/.${COINl} -daemon
 sleep 60
 # Third Node Configuration and launch
-echo -e "${GREEN}Configuring Second Node${CLEAR}"
+echo -e "${GREEN}Configuring Third Node${CLEAR}"
 sudo mkdir /home/${COINl}3/.${COINl}
 sudo touch /home/${COINl}3/.${COINl}/${COINCONFIG}
 echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> /home/${COINl}3/.${COINl}/${COINCONFIG}
@@ -228,11 +228,35 @@ echo
 echo -e ${BOLD}"Launching Third ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}3/.${COINl} -daemon
 sleep 60
-
-
-
+# Fourth Node Configuration and launch
+echo -e "${GREEN}Configuring Fourth Node${CLEAR}"
+sudo mkdir /home/${COINl}4/.${COINl}
+sudo touch /home/${COINl}4/.${COINl}/${COINCONFIG}
+echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> /home/${COINl}4/.${COINl}/${COINCONFIG}
+echo "rpcpassword=pass"`shuf -i 100000-10000000 -n 1` >> /home/${COINl}4/.${COINl}/${COINCONFIG}
+echo "rpcallowip=127.0.0.1" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
+echo "server=1" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
+echo "daemon=1" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
+echo "maxconnections=250" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
+echo "masternode=1" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
+echo "rpcport=$COINPORT4" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
+echo "listen=0" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
+echo "externalip=$(hostname  -I | cut -f1 -d' '):$COINPORT" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "masternodeprivkey=$privkey4" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
+# Inserting Version to nullentrydev files
+if [[ $NULLREC = "y" ]] ; then
+  echo "masterNode4 : true" >> /usr/local/nullentrydev/${COIN3l}.log
+  echo "walletVersion4 : $COINVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
+  echo "scriptVersion4 : $SCRIPTVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
+fi
+sleep 5
 echo
-echo -e ${BOLD}"Second ${COIN3} Node Launched, please wait for it to sync".${CLEAR}
+# Starting Fourth Masternode daemon
+echo -e ${BOLD}"Launching Fourth ${COIN3} Node"${CLEAR}
+${COINDAEMON} -datadir=/home/${COINl}3/.${COINl} -daemon
+sleep 60
+echo
+echo -e ${BOLD}"All ${COIN3} Node Launched, please wait for it to sync".${CLEAR}
 echo
 echo -e "${BOLD}Your Masternodes are sync'ing this will take some time."${CLEAR}
 echo -e "While you wait you can configure your masternode.conf in your local wallet"${CLEAR}
