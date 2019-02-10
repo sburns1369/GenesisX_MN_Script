@@ -1,5 +1,5 @@
 #!/bin/bash
-SCRIPTVERSION= 0.7c
+SCRIPTVERSION=0.7c
 COIN=GenesisX
 COINl=genesisx
 COIN3=XGS
@@ -87,7 +87,7 @@ echo "Updating Apps"
 sudo apt-get -y update
 sudo apt-get -y upgrade
 # Checking to see if Dependencies & Software Libraries have been installed
-if grep -Fxq "dependenciesInstalled: true" sudo /usr/local/nullentrydev/mnodes.log
+if grep -Fxq "dependenciesInstalled: true" /usr/local/nullentrydev/mnodes.log
 then
     echo -e ${RED}"Skipping... Dependencies & Software Libraries - Previously installed"${CLEAR}
 else
@@ -157,7 +157,7 @@ fi
 sleep 5
 echo
 # Starting Masternode daemon
-echo -e ${BOLD}"Launching ${COIN3} Node"${CLEAR}
+echo -e ${BOLD}"Launching Single ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}/.${COINl} -daemon
 sleep 60
 echo
