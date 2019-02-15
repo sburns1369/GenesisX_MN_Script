@@ -19,6 +19,25 @@ fi
 #Menu to Confirm and Pull correct script
 echo
 echo
+echo -e ${BLUE}
+echo " _ __       _  _  __                                      ";
+echo "' )  )     // // /  \`     _/_                            ";
+echo " /  / . . // // /--  ____  /  __  __  ,                   ";
+echo "/  (_(_/_</_</_(___,/ / <_<__/ (_/ (_/_                   ";
+echo "                                    /                     ";
+echo "                                   '                      ";
+echo "     _ _ _                                                ";
+echo "    ' ) ) )         _/_                   /               ";
+echo "     / / / __.  _   /  _  __  ____  __ __/ _              ";
+echo "    / ' (_(_/|_/_)_<__</_/ (_/ / <_(_)(_/_</_             ";
+echo "                                                          ";
+echo "                                                          ";
+echo "             _                      _  _                  ";
+echo "            | )           _/_      // //     _/_          ";
+echo "        ,---|/  ____  _   /  __.  // // __.  /  o __ ____ ";
+echo "         \_/ \_/ / <_/_)_<__(_/|_</_</_(_/|_<__<_(_)/ / <_";
+echo "                                                          ";
+echo "                                                          ";
 echo
 echo -e ${YELLOW}"Welcome to the $Coin Beta Automated Install Script by ${BLUE}NullEntry"${CLEAR}
 echo -e ${RED}'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND'${CLEAR}

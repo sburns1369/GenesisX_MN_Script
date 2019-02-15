@@ -132,7 +132,7 @@ unzip genesisx-linux.zip
 sleep 3
 sudo mv /root/${COIN3l}/${COINDAEMON} /root/${COIN3l}/${COINDAEMONCLI} /usr/local/bin
 sudo chmod 755 -R  /usr/local/bin/${COINl}*
-rm -rf /roocdt/${COIN3l}
+rm -rf /root/${COIN3l}
 # First Node Configuration and launch
 echo -e "${GREEN}Configuring node${CLEAR}"
 sudo mkdir /home/${COINl}/.${COINl}
