@@ -114,7 +114,7 @@ else
   sudo apt-get -y install libboost-all-dev
   sudo apt-get -y install pkg-config
   echo -e ${RED}"Press ENTER when prompted"${CLEAR}
-  sudo add-apt-repository ppa:bitcoin/bitcoin
+  sudo add-apt-repository -yu ppa:bitcoin/bitcoin
   sudo apt-get update
   sudo apt-get -y install libdb4.8-dev
   sudo apt-get -y install libdb4.8++-dev
@@ -261,9 +261,9 @@ echo -e "${BOLD}Your Masternodes are sync'ing this will take some time."${CLEAR}
 echo -e "While you wait you can configure your masternode.conf in your local wallet"${CLEAR}
 echo -e "The data below needs to be in your local masternode configuration file:${CLEAR}"
 echo -e "${BOLD} Masternode_IP 1: $(hostname  -I | cut -f1 -d' '):${COINPORT}${CLEAR}"
-echo -e "${BOLD} Masternode_IP 2: $(hostname  -I | cut -f2 -d' '):${COINPORT}${CLEAR}"
+echo -e "${BOLD} Masternode_IP 2: [$(hostname  -I | cut -f2 -d' ')]:${COINPORT}${CLEAR}"
 echo -e "${BOLD} Masternode_IP 3: $(hostname  -I | cut -f1 -d' '):5556${CLEAR}"
-echo -e "${BOLD} Masternode_IP 4: $(hostname  -I | cut -f2 -d' '):5556${CLEAR}"
+echo -e "${BOLD} Masternode_IP 4: [$(hostname  -I | cut -f2 -d' ')]:5556${CLEAR}"
 echo
 echo -e ${BOLD}"If you become disconnected, you can check the status of sync'ing with"${CLEAR}
 echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status"${CLEAR}
