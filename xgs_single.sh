@@ -101,7 +101,7 @@ else
   sudo apt-get -y install libboost-all-dev
   sudo apt-get -y install pkg-config
   echo -e ${RED}"Press ENTER when prompted"${CLEAR}
-  sudo add-apt-repository ppa:bitcoin/bitcoin
+  sudo add-apt-repository -yu ppa:bitcoin/bitcoin
   sudo apt-get update
   sudo apt-get -y install libdb4.8-dev
   sudo apt-get -y install libdb4.8++-dev
