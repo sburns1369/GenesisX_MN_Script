@@ -186,7 +186,7 @@ echo "maxconnections=250" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
 echo "masternode=1" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
 echo "rpcport=$COINPORT2" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
 echo "listen=0" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
-echo "externalip=$(hostname  -I | cut -f1 -d' '):$COINPORT" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
+echo "externalip=[$(hostname -I | cut -f2 -d' ')]:$COINPORT" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
 echo "masternodeprivkey=$privkey2" >> /home/${COINl}2/.${COINl}/${COINCONFIG}
 # Inserting Version to nullentrydev files
 if [[ $NULLREC = "y" ]] ; then
@@ -213,7 +213,7 @@ echo "maxconnections=250" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
 echo "masternode=1" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
 echo "rpcport=$COINPORT3" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
 echo "listen=0" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
-echo "externalip=$(hostname  -I | cut -f1 -d' '):$COINPORT" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
+echo "externalip=$(hostname  -I | cut -f1 -d' '):5556" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
 echo "masternodeprivkey=$privkey3" >> /home/${COINl}3/.${COINl}/${COINCONFIG}
 # Inserting Version to nullentrydev files
 if [[ $NULLREC = "y" ]] ; then
@@ -240,7 +240,7 @@ echo "maxconnections=250" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
 echo "masternode=1" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
 echo "rpcport=$COINPORT4" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
 echo "listen=0" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
-echo "externalip=$(hostname  -I | cut -f1 -d' '):$COINPORT" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
+echo "externalip=[$(hostname -I | cut -f2 -d' ')]:5556" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
 echo "masternodeprivkey=$privkey4" >> /home/${COINl}4/.${COINl}/${COINCONFIG}
 # Inserting Version to nullentrydev files
 if [[ $NULLREC = "y" ]] ; then
@@ -260,7 +260,10 @@ echo
 echo -e "${BOLD}Your Masternodes are sync'ing this will take some time."${CLEAR}
 echo -e "While you wait you can configure your masternode.conf in your local wallet"${CLEAR}
 echo -e "The data below needs to be in your local masternode configuration file:${CLEAR}"
-echo -e "${BOLD} Masternode_IP: $(hostname  -I | cut -f1 -d' '):${COINPORT}${CLEAR}"
+echo -e "${BOLD} Masternode_IP 1: $(hostname  -I | cut -f1 -d' '):${COINPORT}${CLEAR}"
+echo -e "${BOLD} Masternode_IP 2: $(hostname  -I | cut -f2 -d' '):${COINPORT}${CLEAR}"
+echo -e "${BOLD} Masternode_IP 3: $(hostname  -I | cut -f1 -d' '):5556${CLEAR}"
+echo -e "${BOLD} Masternode_IP 4: $(hostname  -I | cut -f2 -d' '):5556${CLEAR}"
 echo
 echo -e ${BOLD}"If you become disconnected, you can check the status of sync'ing with"${CLEAR}
 echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status"${CLEAR}
