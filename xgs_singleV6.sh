@@ -198,7 +198,7 @@ echo -e "The data below needs to be in your local masternode configuration file:
 echo -e "${BOLD} Masternode_IP 1: [${MNIP1}]:${COINPORT}${CLEAR}"
 echo
 echo -e ${BOLD} "If you become disconnected, you can check the status of sync'ing with"${CLEAR}
-echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/bitcoingenx/.bitcoingenx mnsync status"${CLEAR}
+echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status"${CLEAR}
 echo
 echo -e ${BOLD}"You can check the status of your ${COIN3} Masternode with"${CLEAR}
 echo -e "${YELLOW}For mn1 ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} masternode status"${CLEAR}

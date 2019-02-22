@@ -380,7 +380,7 @@ echo -e "${BOLD} Masternode_IP 4: [${MNIP4}]:${COINPORT}${CLEAR}"
 echo -e "${BOLD} Masternode_IP 5: [${MNIP5}]:${COINPORT}${CLEAR}"
 echo
 echo -e ${BOLD} "If you become disconnected, you can check the status of sync'ing with"${CLEAR}
-echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/bitcoingenx/.bitcoingenx mnsync status"${CLEAR}
+echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status"${CLEAR}
 echo -e ${BOLD}"You can check the status of your ${COIN3} Masternode with"${CLEAR}
 echo -e "${YELLOW}For mn1 ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} masternode status"${CLEAR}
 echo -e "${YELLOW}For mn2 ${COINDAEMONCLI} -datadir=/home/${COINl}2/.${COINl} masternode status"${CLEAR}
