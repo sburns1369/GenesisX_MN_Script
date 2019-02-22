@@ -225,7 +225,8 @@ sleep 5
 until ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
     ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} getblockcount
     sleep 5
-  doneecho -e "${GREEN}Haulting and Replicating First ${COIN} Node${CLEAR}"
+  done
+  echo -e "${GREEN}Haulting and Replicating First ${COIN} Node${CLEAR}"
 echo
 cd /
 bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx stop
