@@ -120,7 +120,7 @@ if [[ $NULLREC = "y" ]] ; then
     echo "Found /usr/local/nullentrydev/mnodes.log"
   fi
 fi
-echo -e ${RED}"Updating Apps"${CLEAR}
+echo ${RED}"Updating Apps"${CLEAR}
 sudo apt-get -y update
 sudo apt-get -y upgrade
 if grep -Fxq "dependenciesInstalled: true" /usr/local/nullentrydev/mnodes.log
@@ -137,7 +137,7 @@ else
   sudo apt-get -y install libevent-dev
   sudo apt-get -y install libboost-all-dev
   sudo apt-get -y install pkg-config
-  echo -e ${RED}"Press [ENTER] if prompted"${CLEAR}
+  echo -e ${RED}"Press ENTER when prompted"${CLEAR}
   sudo add-apt-repository -yu ppa:bitcoin/bitcoin
   sudo apt-get update
   sudo apt-get -y install libdb4.8-dev
@@ -187,7 +187,7 @@ sleep 3
 sudo mv /root/${COIN3l}/${COINDAEMON} /root/${COIN3l}/${COINDAEMONCLI} /usr/local/bin
 sudo chmod 755 -R  /usr/local/bin/${COINl}*
 rm -rf /root/${COIN3l}
-# First Node Configuration and launchecho -e "${GREEN}Configuring First ${COIN} Node${CLEAR}"
+echo -e "${GREEN}Configuring First ${COIN} Node${CLEAR}"
 sudo mkdir /home/${COINl}/.${COINl}
 sudo touch /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}/.${COINl}/${COINCONFIG}
@@ -402,17 +402,19 @@ echo -e "${YELLOW}Once complete, it will stop and copy the block chain to${CLEAR
 echo -e "${YELLOW}the other masternodes.  This prevent all masternodes${CLEAR}"
 echo -e "${YELLOW}from downloading the block chain individually; taking up${CLEAR}"
 echo -e "${YELLOW}more time and resources.  Current Block count will be displayed below.${CLEAR}"
-bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx getblockcount
+#
+${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} getblockcount
 sleep 5
-until bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
-    bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx getblockcount
+until ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
+    ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} getblockcount
     sleep 5
   done
 echo -e "${GREEN}Haulting and Replicating First ${COIN} Node${CLEAR}"
 echo
 sleep 5
 cd /
-bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx stop
+${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} stop
+#
 sleep 10
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}2/.${COINl}/
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}3/.${COINl}/
@@ -453,15 +455,15 @@ echo -e ${BOLD}"Launching Fourth ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}4/.${COINl} -daemon
 echo
 sleep 5
-echo -e ${BOLD}"Re-Launching Fifth ${COIN3} Node"${CLEAR}
+echo -e ${BOLD}"Launching Fifth ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}5/.${COINl} -daemon
 echo
 sleep 5
-echo -e ${BOLD}"Re-Launching Sixth ${COIN3} Node"${CLEAR}
+echo -e ${BOLD}"Launching Sixth ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}6/.${COINl} -daemon
 echo
 sleep 5
-echo -e ${BOLD}"Re-Launching Seventh ${COIN3} Node"${CLEAR}
+echo -e ${BOLD}"Launching Seventh ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}7/.${COINl} -daemon
 echo
 sleep 5

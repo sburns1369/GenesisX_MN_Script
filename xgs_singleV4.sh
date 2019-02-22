@@ -84,7 +84,7 @@ if [[ $NULLREC = "y" ]] ; then
     echo "Found /usr/local/nullentrydev/mnodes.log"
   fi
 fi
-echo -e ${RED}"Updating Apps"${CLEAR}
+echo ${RED}"Updating Apps"${CLEAR}
 sudo apt-get -y update
 sudo apt-get -y upgrade
 # Checking to see if Dependencies & Software Libraries have been installed

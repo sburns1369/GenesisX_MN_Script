@@ -285,10 +285,10 @@ sudo mkdir /home/${COINl}5/.${COINl}
 sudo touch /home/${COINl}5/${COINCONFIG}
 echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}5/${COINCONFIG}
 echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}5/${COINCONFIG}
-echo "rpcallowip=127.0.0.1" >> /home/${COINl}4/${COINCONFIG}
+echo "rpcallowip=127.0.0.1" >> /home/${COINl}5/${COINCONFIG}
 echo "server=1" >> /home/${COINl}5/${COINCONFIG}
 echo "daemon=1" >> /home/${COINl}5/${COINCONFIG}
-echo "maxconnections=250" >> /home/${COINl}4/${COINCONFIG}
+echo "maxconnections=250" >> /home/${COINl}5/${COINCONFIG}
 echo "masternode=1" >> /home/${COINl}5/${COINCONFIG}
 echo "rpcport=${COINRPCPORT5}" >> /home/${COINl}5/${COINCONFIG}
 echo "listen=0" >> /home/${COINl}5/${COINCONFIG}
@@ -310,18 +310,19 @@ echo -e "${YELLOW}Once complete, it will stop and copy the block chain to${CLEAR
 echo -e "${YELLOW}the other masternodes.  This prevent all masternodes${CLEAR}"
 echo -e "${YELLOW}from downloading the block chain individually; taking up${CLEAR}"
 echo -e "${YELLOW}more time and resources.  Current Block count will be displayed below.${CLEAR}"
-bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx getblockcount
+#
+${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} getblockcount
 sleep 5
-until bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
-    bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx getblockcount
+until ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
+    ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} getblockcount
     sleep 5
   done
 echo -e "${GREEN}Haulting and Replicating First ${COIN} Node${CLEAR}"
 echo
 sleep 5
 cd /
-bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx stop
-sleep 10
+${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} stop
+#sleep 10
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}2/.${COINl}/
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}3/.${COINl}/
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}4/.${COINl}/
