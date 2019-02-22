@@ -223,7 +223,6 @@ fi
 sleep 3
 echo
 echo -e ${BOLD}"Second ${COIN3} Node Staged for launch"${CLEAR}
-sleep 3
 sleep 7
 echo
 echo -e "${GREEN}Configuring Third ${COIN} Node${CLEAR}"
@@ -290,7 +289,7 @@ until ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status | grep -m
 echo -e "${GREEN}Haulting and Replicating First ${COIN} Node${CLEAR}"
 echo
 cd /
-bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx stop
+${COINDAEMONCLION} -datadir=/home/${COINl}/.${COINl} stop
 #adding breaks to prevent issues cope 28
 sleep 20
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}2/.${COINl}/

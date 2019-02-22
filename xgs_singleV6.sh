@@ -186,10 +186,10 @@ sleep 7
 echo
 echo -e "${RED}This process can take a while!${CLEAR}"
 echo -e "${YELLOW}Waiting on Masternode Block Chain to Synchronize${CLEAR}"
-bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx getblockcount
+${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} getblockcount
 sleep 5
-until bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
-    bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx getblockcount
+until ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
+    ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} getblockcount
     sleep 5
   done
 echo
