@@ -380,30 +380,46 @@ until ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status | grep -m
   done
 echo -e "${GREEN}Haulting and Replicating First ${COIN} Node${CLEAR}"
 echo
-sleep 5
 cd /
 ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} stop
-#
-sleep 10
+#adding breaks to prevent issues cope 28
+sleep 20
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}2/.${COINl}/
+sleep 3
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}3/.${COINl}/
+sleep 3
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}4/.${COINl}/
+sleep 3
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}5/.${COINl}/
+sleep 3
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}6/.${COINl}/
+sleep 3
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}7/.${COINl}/
+sleep 3
 sudo rm /home/${COINl}2/.${COINl}/${COINCONFIG}
+sleep 1
 sudo rm /home/${COINl}3/.${COINl}/${COINCONFIG}
+sleep 1
 sudo rm /home/${COINl}4/.${COINl}/${COINCONFIG}
+sleep 1
 sudo rm /home/${COINl}5/.${COINl}/${COINCONFIG}
+sleep 1
 sudo rm /home/${COINl}6/.${COINl}/${COINCONFIG}
+sleep 1
 sudo rm /home/${COINl}7/.${COINl}/${COINCONFIG}
+sleep 1
 sudo cp -r /home/${COINl}2/${COINCONFIG} /home/${COINl}2/.${COINl}/${COINCONFIG}
+sleep 1
 sudo cp -r /home/${COINl}3/${COINCONFIG} /home/${COINl}3/.${COINl}/${COINCONFIG}
+sleep 1
 sudo cp -r /home/${COINl}4/${COINCONFIG} /home/${COINl}4/.${COINl}/${COINCONFIG}
+sleep 1
 sudo cp -r /home/${COINl}5/${COINCONFIG} /home/${COINl}5/.${COINl}/${COINCONFIG}
+sleep 1
 sudo cp -r /home/${COINl}6/${COINCONFIG} /home/${COINl}6/.${COINl}/${COINCONFIG}
+sleep 1
 sudo cp -r /home/${COINl}7/${COINCONFIG} /home/${COINl}7/.${COINl}/${COINCONFIG}
-sleep 5
+sleep 1
 #Launch codes
 echo -e ${BOLD}"Re-Launching First ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}/.${COINl} -daemon
