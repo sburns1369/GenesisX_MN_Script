@@ -16,7 +16,6 @@ if [[ $(lsb_release -d) != *16.04* ]]; then
   echo -e ${RED}"The operating system is not Ubuntu 16.04. You must be running on ubuntu 16.04."${CLEAR}
   exit 1
 fi
-#Menu to Confirm and Pull correct script
 echo
 echo
 echo -e ${BLUE}
@@ -41,23 +40,32 @@ echo "                                                          ";
 echo
 echo -e ${YELLOW}"Welcome to the $Coin Beta Automated Install Script by ${BLUE}NullEntry"${CLEAR}
 echo -e ${RED}'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND'${CLEAR}
-echo -e ${YELLOW}"Durring this Process Please Hit Enter or Input What is Asked."${CLEAR}
+echo -e ${YELLOW}"During this Process Please Hit Enter or Input What is Asked."${CLEAR}
 echo
 echo -e ${GREEN}"Are you sure you want to install $COIN Masternode(s)?"${CLEAR}
-echo -e ${GREEN} "Press y for yes, and n for no followed by [ENTER]:"${CLEAR}
+echo -e ${GREEN} "Press y for yes and [ENTER]:"${CLEAR}
 read AGREE
 if [[ $AGREE =~ "y" ]] ; then
-echo -e ${GREEN}"Please enter the number (1-2) of $COIN Masternode(s)"${CLEAR}
-ehco -e "3 and 4 packs are under review till further testing"
+echo -e ${YELLOW}"IPv6 support is required for 2 or more Masternodes"${CLEAR}
+echo -e ${YELLOW}"Vultr Users - Check Support IPv6 on initial Server Selection"${CLEAR}
+echo
+echo -e ${YELLOW}"Upgrades are not available due to massive code change, please re-install"${CLEAR}
+echo
+echo -e ${GREEN}"Please enter the number (1-8) of $COIN Masternode(s)"${CLEAR}
+echo -e ${YELLOW}" -If your VPS doesn't support IPv6 press 0 for 1 IPv4"${CLEAR}
 echo -e ${GREEN}"you would like to install :"${CLEAR}
 read NUMBER
 case $NUMBER in
-  1)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/${COIN3l}_single.sh);;
+  0)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/${COIN3l}_singleV4.sh);;
+  1)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/${COIN3l}_singleV6.sh);;
   2)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/${COIN3l}_2pack.sh);;
-  #3)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/${COIN3l}_3pack.sh);;
-  #4)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/${COIN3l}_4pack.sh);;
+  3)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/${COIN3l}_2pack.sh);;
+  4)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/${COIN3l}_2pack.sh);;
+  5)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/${COIN3l}_2pack.sh);;
+  6)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/${COIN3l}_2pack.sh);;
+  7)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/${COIN3l}_2pack.sh);;
+  8)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/${COIN3l}_8pack.sh);;
+#  u)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/update_${COIN3l}.sh);;
   *)echo -e ${RED}"Invalid Option - Exiting Setup - Re-run to try again"${CLEAR};;
 esac
-else
-echo -e "Exiting Setup!  You can re-run to try again"
 fi

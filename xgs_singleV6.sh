@@ -1,21 +1,18 @@
 #!/bin/bash
-SCRIPTVERSION=0.9a
 COIN=GenesisX
 COINl=genesisx
 COIN3=XGS
 COIN3l=xgs
 COINPORT=5555
 COINRPCPORT1=19012
-COINRPCPORT2=19013
-COINRPCPORT3=19014
-COINRPCPORT4=19015
 COINDAEMON=genesisxd
 COINDAEMONCLI=genesisx-cli
 COINCORE=.genesisx
 COINCONFIG=genesisx.conf
-COINVERSION=1.4.0COINVERSION=1.6.0
-NODESL=Four
-NODESN=4
+COINVERSION=1.4.0
+SCRIPTVERSION=0.9a
+NODESL=One
+NODESN=1
 BLUE='\033[0;36m'
 GREEN='\033[0;92m'
 RED='\033[0;91m'
@@ -29,7 +26,7 @@ if [[ $(lsb_release -d) != *16.04* ]]; then
 fi
 echo
 echo
-echo -e ${GREEN}"Are you sure you want to continue installation of ${NODESL} ${COIN} Masternodes?"
+echo -e ${GREEN}"Are you sure you want to continue installation of a ${NODESL} ${COIN} Masternodes?"
 echo -e "type y/n followed by [ENTER]:"${CLEAR}
 read AGREE
 if [[ $AGREE =~ "y" ]] ; then
@@ -56,24 +53,11 @@ echo -e ${YELLOW}"Masternode may fail to start with invalid key"${CLEAR}
 echo
 echo -e ${YELLOW}"Right Click to paste in some SSH Clients"${CLEAR}
 echo
-echo -e ${GREEN}"Please Enter Your First Masternode Private Key:"${CLEAR}
+echo -e ${GREEN}"Please Enter Your Masternode Private Key:"${CLEAR}
 read privkey
-echo
-echo -e ${GREEN}"Please Enter Your Second Masternode Private Key:"${CLEAR}
-read privkey2
-echo
-echo -e ${GREEN}"Please Enter Your Third Masternode Private Key:"${CLEAR}
-read privkey3
-echo
-echo -e ${GREEN}"Please Enter Your Fourth Masternode Private Key:"${CLEAR}
-read privkey4
-echo
 echo
 echo "Creating ${NODESN} ${COIN} system users with no-login access:"
 sudo adduser --system --home /home/${COINl} ${COINl}
-sudo adduser --system --home /home/${COINl}2 ${COINl}2
-sudo adduser --system --home /home/${COINl}3 ${COINl}3
-sudo adduser --system --home /home/${COINl}4 ${COINl}4
 cd ~
 if [[ $NULLREC = "y" ]] ; then
   if [ ! -d /usr/local/nullentrydev/ ]; then
@@ -101,7 +85,7 @@ if [[ $NULLREC = "y" ]] ; then
     echo "Found /usr/local/nullentrydev/mnodes.log"
   fi
 fi
-echo ${RED}"Updating Apps"${CLEAR}
+echo -e ${RED}"Updating Apps"${CLEAR}
 sudo apt-get -y update
 sudo apt-get -y upgrade
 if grep -Fxq "dependenciesInstalled: true" /usr/local/nullentrydev/mnodes.log
@@ -136,9 +120,6 @@ else
     IP=$(hostname -I | cut -f2 -d' '| cut -f1-7 -d:)
     for i in {15360..15375}; do printf "${IP}:%.4x\n" $i >> ip.tmp; done
     MNIP1=$(sed -n '3p' < ip.tmp)
-    MNIP2=$(sed -n '4p' < ip.tmp)
-    MNIP3=$(sed -n '5p' < ip.tmp)
-    MNIP4=$(sed -n '6p' < ip.tmp)
     if [[ $NULLREC = "y" ]] ; then
       sudo echo "ipv6: true" >> /usr/local/nullentrydev/mnodes.log
       sudo touch /usr/local/nullentrydev/iptable.log
@@ -148,6 +129,7 @@ else
 cd /var
 sudo touch swap.img
 sudo chmod 600 swap.img
+echo -e ${YELLOW} "You should check out https://youtu.be/l9nh1l8ZIJQ"${CLEAR}
 sudo dd if=/dev/zero of=/var/swap.img bs=1024k count=4096
 sudo mkswap /var/swap.img
 sudo swapon /var/swap.img
@@ -156,6 +138,7 @@ if [ ! -d /root/${COIN3l} ]; then
   sudo mkdir /root/${COIN3l}
 fi
 cd /root/${COIN3l}
+#Download Wallet Files
 echo "Downloading latest ${COIN} binaries"
 wget https://github.com/genesis-x/genesis-x/files/2799605/genesisx-linux.zip
 unzip genesisx-linux.zip
@@ -187,7 +170,7 @@ echo "addnode=178.62.68.177:4488" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "addnode=136.61.3.89:4488" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 
 # Inserting Version to nullentrydev files
-echo -e ${BOLD}"Launching First ${COIN3} Node"${CLEAR}
+echo -e ${BOLD}"Launching ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}/.${COINl} -daemon
 sleep 1
 if [[ $NULLREC = "y" ]] ; then
@@ -201,142 +184,24 @@ if [[ $NULLREC = "y" ]] ; then
 fi
 sleep 7
 echo
-echo -e "${GREEN}Configuring Second ${COIN} Node${CLEAR}"
-sudo mkdir /home/${COINl}2/.${COINl}
-sudo touch /home/${COINl}2/${COINCONFIG}
-echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}2/${COINCONFIG}
-echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}2/${COINCONFIG}
-echo "rpcallowip=127.0.0.1" >> /home/${COINl}2/${COINCONFIG}
-echo "server=1" >> /home/${COINl}2/${COINCONFIG}
-echo "daemon=1" >> /home/${COINl}2/${COINCONFIG}
-echo "maxconnections=250" >> /home/${COINl}2/${COINCONFIG}
-echo "masternode=1" >> /home/${COINl}2/${COINCONFIG}
-echo "rpcport=${COINRPCPORT2}" >> /home/${COINl}2/${COINCONFIG}
-echo "listen=0" >> /home/${COINl}2/${COINCONFIG}
-echo "externalip=[${MNIP2}]:$COINPORT" >> /home/${COINl}2/${COINCONFIG}
-echo "masternodeprivkey=$privkey2" >> /home/${COINl}2/${COINCONFIG}
-if [[ $NULLREC = "y" ]] ; then
-  echo "masterNode2 : true" >> /usr/local/nullentrydev/${COIN3l}.log
-  echo "walletVersion2 : $COINVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
-  echo "scriptVersion2 : $SCRIPTVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
-fi
-sleep 3
-echo
-echo -e ${BOLD}"Second ${COIN3} Node Staged for launch"${CLEAR}
-sleep 3
-sleep 7
-echo
-echo -e "${GREEN}Configuring Third ${COIN} Node${CLEAR}"
-sudo mkdir /home/${COINl}3/.${COINl}
-sudo touch /home/${COINl}3/${COINCONFIG}
-echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}3/${COINCONFIG}
-echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}3/${COINCONFIG}
-echo "rpcallowip=127.0.0.1" >> /home/${COINl}3/${COINCONFIG}
-echo "server=1" >> /home/${COINl}3/${COINCONFIG}
-echo "daemon=1" >> /home/${COINl}3/${COINCONFIG}
-echo "maxconnections=250" >> /home/${COINl}3/${COINCONFIG}
-echo "masternode=1" >> /home/${COINl}3/${COINCONFIG}
-echo "rpcport=${COINRPCPORT3}" >> /home/${COINl}3/${COINCONFIG}
-echo "listen=0" >> /home/${COINl}3/${COINCONFIG}
-echo "externalip=[${MNIP3}]:$COINPORT" >> /home/${COINl}3/${COINCONFIG}
-echo "masternodeprivkey=$privkey3" >> /home/${COINl}3/${COINCONFIG}
-if [[ $NULLREC = "y" ]] ; then
-  echo "masterNode3 : true" >> /usr/local/nullentrydev/${COIN3l}.log
-  echo "walletVersion3 : $COINVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
-  echo "scriptVersion3 : $SCRIPTVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
-fi
-sleep 3
-echo
-echo -e ${BOLD}"Third ${COIN3} Node Staged for launch"${CLEAR}
-sleep 7
-echo
-echo -e "${GREEN}Configuring Fourth ${COIN} Node${CLEAR}"
-sudo mkdir /home/${COINl}4/.${COINl}
-sudo touch /home/${COINl}4/${COINCONFIG}
-echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}4/${COINCONFIG}
-echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}4/${COINCONFIG}
-echo "rpcallowip=127.0.0.1" >> /home/${COINl}4/${COINCONFIG}
-echo "server=1" >> /home/${COINl}4/${COINCONFIG}
-echo "daemon=1" >> /home/${COINl}4/${COINCONFIG}
-echo "maxconnections=250" >> /home/${COINl}4/${COINCONFIG}
-echo "masternode=1" >> /home/${COINl}4/${COINCONFIG}
-echo "rpcport=${COINRPCPORT4}" >> /home/${COINl}4/${COINCONFIG}
-echo "listen=0" >> /home/${COINl}4/${COINCONFIG}
-echo "externalip=[${MNIP4}]:$COINPORT" >> /home/${COINl}4/${COINCONFIG}
-echo "masternodeprivkey=$privkey4" >> /home/${COINl}4/${COINCONFIG}
-if [[ $NULLREC = "y" ]] ; then
-  echo "masterNode4 : true" >> /usr/local/nullentrydev/${COIN3l}.log
-  echo "walletVersion4 : $COINVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
-  echo "scriptVersion4 : $SCRIPTVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
-fi
-sleep 3
-echo
-echo -e ${BOLD}"Fourth ${COIN3} Node Staged for launch"${CLEAR}
-sleep 7
-echo
 echo -e "${RED}This process can take a while!${CLEAR}"
-echo -e "${YELLOW}Waiting on First Masternode Block Chain to Synchronize${CLEAR}"
-echo -e "${YELLOW}Once complete, it will stop and copy the block chain to${CLEAR}"
-echo -e "${YELLOW}the other masternodes.  This prevent all masternodes${CLEAR}"
-echo -e "${YELLOW}from downloading the block chain individually; taking up${CLEAR}"
-echo -e "${YELLOW}more time and resources.  Current Block count will be displayed below.${CLEAR}"
+echo -e "${YELLOW}Waiting on Masternode Block Chain to Synchronize${CLEAR}"
 bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx getblockcount
 sleep 5
 until bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
     bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx getblockcount
     sleep 5
   done
-echo -e "${GREEN}Haulting and Replicating First ${COIN} Node${CLEAR}"
-echo
-sleep 5
-cd /
-bitcoingenx-cli -datadir=/home/bitcoingenx/.bitcoingenx stop
-sleep 10
-sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}2/.${COINl}/
-sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}3/.${COINl}/
-sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}4/.${COINl}/
-sudo rm /home/${COINl}2/.${COINl}/${COINCONFIG}
-sudo rm /home/${COINl}3/.${COINl}/${COINCONFIG}
-sudo rm /home/${COINl}4/.${COINl}/${COINCONFIG}
-sudo cp -r /home/${COINl}2/${COINCONFIG} /home/${COINl}2/.${COINl}/${COINCONFIG}
-sudo cp -r /home/${COINl}3/${COINCONFIG} /home/${COINl}3/.${COINl}/${COINCONFIG}
-sudo cp -r /home/${COINl}4/${COINCONFIG} /home/${COINl}4/.${COINl}/${COINCONFIG}
-sleep 5
-#Launch codes
-echo -e ${BOLD}"Re-Launching First ${COIN3} Node"${CLEAR}
-${COINDAEMON} -datadir=/home/${COINl}/.${COINl} -daemon
-echo
-sleep 5
-echo -e ${BOLD}"Launching Second ${COIN3} Node"${CLEAR}
-${COINDAEMON} -datadir=/home/${COINl}2/.${COINl} -daemon
-echo
-sleep 5
-echo -e ${BOLD}"Launching Third ${COIN3} Node"${CLEAR}
-${COINDAEMON} -datadir=/home/${COINl}3/.${COINl} -daemon
-echo
-sleep 5
-echo -e ${BOLD}"Launching Fourth ${COIN3} Node"${CLEAR}
-${COINDAEMON} -datadir=/home/${COINl}4/.${COINl} -daemon
-echo
-sleep 5
 echo
 echo -e ${BOLD}"All ${NODESN} ${COIN3} Nodes Launched, please wait for it to sync".${CLEAR}
-echo
-echo -e "${BOLD}Your Masternodes are sync'ing this will take some time."${CLEAR}
-echo -e "While you wait you can configure your masternode.conf in your local wallet"${CLEAR}
 echo -e "The data below needs to be in your local masternode configuration file:${CLEAR}"
 echo -e "${BOLD} Masternode_IP 1: [${MNIP1}]:${COINPORT}${CLEAR}"
-echo -e "${BOLD} Masternode_IP 2: [${MNIP2}]:${COINPORT}${CLEAR}"
-echo -e "${BOLD} Masternode_IP 3: [${MNIP3}]:${COINPORT}${CLEAR}"
-echo -e "${BOLD} Masternode_IP 4: [${MNIP4}]:${COINPORT}${CLEAR}"
 echo
 echo -e ${BOLD} "If you become disconnected, you can check the status of sync'ing with"${CLEAR}
 echo -e "${YELLOW}For ${COINDAEMONCLI} -datadir=/home/bitcoingenx/.bitcoingenx mnsync status"${CLEAR}
+echo
 echo -e ${BOLD}"You can check the status of your ${COIN3} Masternode with"${CLEAR}
 echo -e "${YELLOW}For mn1 ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} masternode status"${CLEAR}
-echo -e "${YELLOW}For mn2 ${COINDAEMONCLI} -datadir=/home/${COINl}2/.${COINl} masternode status"${CLEAR}
-echo -e "${YELLOW}For mn3 ${COINDAEMONCLI} -datadir=/home/${COINl}3/.${COINl} masternode status"${CLEAR}
-echo -e "${YELLOW}For mn4 ${COINDAEMONCLI} -datadir=/home/${COINl}4/.${COINl} masternode status"${CLEAR}
 echo
 fi
 echo -e ${BLUE}" Your patronage is apprappreciated, tipping addresses"${CLEAR}
