@@ -259,7 +259,7 @@ until ${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} mnsync status | grep -m
   echo -e "${GREEN}Haulting and Replicating First ${COIN} Node${CLEAR}"
 echo
 cd /
-${COINDAEMONCLION} -datadir=/home/${COINl}/.${COINl} stop
+${COINDAEMONCLI} -datadir=/home/${COINl}/.${COINl} stop
 #adding breaks to prevent issues cope 28
 sleep 20
 sudo cp -r /home/${COINl}/.${COINl}/* /home/${COINl}2/.${COINl}/
