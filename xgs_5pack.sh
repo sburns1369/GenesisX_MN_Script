@@ -184,14 +184,6 @@ echo "rpcport=${COINRPCPORT1}" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "listen=0" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "externalip=[${MNIP1}]:$COINPORT" >> /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "masternodeprivkey=$privkey" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "addnode=85.214.50.43:4488" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "addnode=45.32.128.115:4488" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "addnode=144.202.124.138:4488" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "addnode=108.61.224.80:4488" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "addnode=118.38.99.125:4488" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "addnode=178.62.68.177:4488" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-echo "addnode=136.61.3.89:4488" >> /home/${COINl}/.${COINl}/${COINCONFIG}
-
 # Inserting Version to nullentrydev files
 echo -e ${BOLD}"Launching First ${COIN3} Node"${CLEAR}
 ${COINDAEMON} -datadir=/home/${COINl}/.${COINl} -daemon
