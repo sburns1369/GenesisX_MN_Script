@@ -138,6 +138,7 @@ sudo chmod 755 -R  /usr/local/bin/${COINl}*
 rm -rf /root/${COIN3l}
 # First Node Configuration and launch
 echo -e "${GREEN}Configuring ${COIN} Node${CLEAR}"
+sudo mkdir /home/${COINl}/
 sudo mkdir /home/${COINl}/.${COINl}
 sudo touch /home/${COINl}/.${COINl}/${COINCONFIG}
 echo "rpcuser=user"`shuf -i 100000-10000000 -n 1` >> /home/${COINl}/.${COINl}/${COINCONFIG}
