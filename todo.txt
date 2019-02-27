@@ -1,7 +1,0 @@
-TODO
-	tweak to 0.06a format
-		Update single, 2pack and 3 pack to staging genesisd starts after each config
-		end "fi" location
-
-	clean up and tweak variables and constants
-	
