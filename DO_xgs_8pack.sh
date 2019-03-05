@@ -125,9 +125,36 @@ if [[ $NULLREC = "y" ]] ; then
 echo "dependenciesInstalled: true" >> /usr/local/nullentrydev/mnodes.log
 fi
 fi
+regex='^([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4}$'
+FINDIP=$(hostname -I | cut -f2 -d' '| cut -f1-7 -d:)
+if [[ $FINDIP =~ $regex ]]; then
+echo "IPv6 Address check is good"
+echo ${FINDIP} testing note
+IP=${FINDIP}
+echo ${IP}
+else
+echo "IPv6 Address check is not expected, getting IPv6 Helper to recalculate"
+echo $FINDIP - testing note 1
+sudo apt-get install sipcalc
+echo $FINDIP - testing note 2
+FINDIP=$(hostname -I | cut -f3 -d' '| cut -f1-8 -d:)
+echo $FINDIP - check 3
+echo "Attempting to adjust results and re-calculate IPv6 Address"
+TESTIP=$(sipcalc ${FINDIP} | fgrep Expanded | cut -d ' ' -f3)
+if [[ $TESTIP =~ $regex ]]; then
+echo "IPv6 Address check is good"
+IP=${FINDIP}
+else
+echo "IPv6 Addressing check has failed. Contact NullEntry Support"
+echo ${MNIP1} testing note
+echo ${IP} testing note
+exit 1
+fi
+fi
+echo ${MNIP1} testing note
+echo ${IP} testing note
 echo -e ${YELLOW} "Building IP Tables"${CLEAR}
 sudo touch ip.tmp
-IP=$(hostname -I | cut -f2 -d' '| cut -f1-7 -d:)
 for i in {15361..15375}; do printf "${IP}:%.4x\n" $i >> ip.tmp; done
 MNIP1=$(sed -n '1p' < ip.tmp)
 MNIP2=$(sed -n '2p' < ip.tmp)
