@@ -48,15 +48,15 @@ echo -e ${YELLOW}" -If your VPS doesn't support IPv6 press 0 for 1 IPv4"${CLEAR}
 echo -e ${GREEN}"you would like to install :"${CLEAR}
 read NUMBER
 case $NUMBER in
-  0)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_singleV4.sh);;
-  1)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_singleV6.sh);;
-  2)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_2pack.sh);;
-  3)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_3pack.sh);;
-  4)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_4pack.sh);;
-  5)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_5pack.sh);;
-  6)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_6pack.sh);;
-  7)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_7pack.sh);;
-  8)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/xgs_8pack.sh);;
+  0)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_singleV4.sh);;
+  1)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_singleV6.sh);;
+  2)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_2pack.sh);;
+  3)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_3pack.sh);;
+  4)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_4pack.sh);;
+  5)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_5pack.sh);;
+  6)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_6pack.sh);;
+  7)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_7pack.sh);;
+  8)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_8pack.sh);;
 #  u)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/${COIN}_MN_Script/master/update_${COIN3l}.sh);;
   *)echo -e ${RED}"Invalid Option - Exiting Setup - Re-run to try again"${CLEAR};;
 esac

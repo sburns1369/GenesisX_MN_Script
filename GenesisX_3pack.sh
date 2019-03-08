@@ -49,30 +49,10 @@ echo
 echo -e ${GREEN}"Please Enter Your Third Masternode Private Key:"${CLEAR}
 read privkey3
 echo
-echo -e ${GREEN}"Please Enter Your Fourth Masternode Private Key:"${CLEAR}
-read privkey4
-echo
-echo -e ${GREEN}"Please Enter Your Fifth Masternode Private Key:"${CLEAR}
-read privkey5
-echo
-echo -e ${GREEN}"Please Enter Your Sixth Masternode Private Key:"${CLEAR}
-read privkey6
-echo
-echo -e ${GREEN}"Please Enter Your Seventh Masternode Private Key:"${CLEAR}
-read privkey7
-echo
-echo -e ${GREEN}"Please Enter Your Eigth Masternode Private Key:"${CLEAR}
-read privkey8
-echo
 echo "Creating ${NODESN} GenesisX system users with no-login access:"
 sudo adduser --system --home /home/genesisx genesisx
 sudo adduser --system --home /home/genesisx2 genesisx2
 sudo adduser --system --home /home/genesisx3 genesisx3
-sudo adduser --system --home /home/genesisx4 genesisx4
-sudo adduser --system --home /home/genesisx5 genesisx5
-sudo adduser --system --home /home/genesisx6 genesisx6
-sudo adduser --system --home /home/genesisx7 genesisx7
-sudo adduser --system --home /home/genesisx8 genesisx8
 cd ~
 if [[ $NULLREC = "y" ]] ; then
 if [ ! -d /usr/local/nullentrydev/ ]; then
@@ -141,12 +121,12 @@ FINDIP=$(hostname -I | cut -f3 -d' '| cut -f1-8 -d:)
 echo $FINDIP - check 3
 echo "Attempting to adjust results and re-calculate IPv6 Address"
 TESTIP=$(sipcalc ${FINDIP} | fgrep Expanded | cut -d ' ' -f3)
-if [[ $TESTIP =~ $regex ]]; then
+if [[ $FINDIP =~ $regex ]]; then
+FINDIP=$(echo ${FINDIP} | cut -f1-7 -d:)
 echo "IPv6 Address check is good"
 IP=${FINDIP}
 else
 echo "IPv6 Addressing check has failed. Contact NullEntry Support"
-echo ${MNIP1} testing note
 echo ${IP} testing note
 exit 1
 fi
@@ -260,111 +240,6 @@ echo "scriptVersion3 : 0.9d" >> /usr/local/nullentrydev/xgs.log
 fi
 sleep 5
 echo
-echo -e "${GREEN}Configuring fourth GenesisX Node${CLEAR}"
-sudo mkdir /home/genesisx4/.genesisx
-sudo touch /home/genesisx4/genesisx.conf
-echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/genesisx4/genesisx.conf
-echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/genesisx4/genesisx.conf
-echo "rpcallowip=127.0.0.1" >> /home/genesisx4/genesisx.conf
-echo "server=1" >> /home/genesisx4/genesisx.conf
-echo "daemon=1" >> /home/genesisx4/genesisx.conf
-echo "maxconnections=250" >> /home/genesisx4/genesisx.conf
-echo "masternode=1" >> /home/genesisx4/genesisx.conf
-echo "rpcport=19015" >> /home/genesisx4/genesisx.conf
-echo "listen=0" >> /home/genesisx4/genesisx.conf
-echo "externalip=[${MNIP4}]:5555" >> /home/genesisx4/genesisx.conf
-echo "masternodeprivkey=$privkey4" >> /home/genesisx4/genesisx.conf
-if [[ $NULLREC = "y" ]] ; then
-echo "masterNode4 : true" >> /usr/local/nullentrydev/xgs.log
-echo "walletVersion4 : 1.4.0COINVERSION=1.6.0" >> /usr/local/nullentrydev/xgs.log
-echo "scriptVersion4 : 0.9d" >> /usr/local/nullentrydev/xgs.log
-fi
-sleep 5
-echo
-echo -e "${GREEN}Configuring fifth GenesisX Node${CLEAR}"
-sudo mkdir /home/genesisx5/.genesisx
-sudo touch /home/genesisx5/genesisx.conf
-echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/genesisx5/genesisx.conf
-echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/genesisx5/genesisx.conf
-echo "rpcallowip=127.0.0.1" >> /home/genesisx5/genesisx.conf
-echo "server=1" >> /home/genesisx5/genesisx.conf
-echo "daemon=1" >> /home/genesisx5/genesisx.conf
-echo "maxconnections=250" >> /home/genesisx5/genesisx.conf
-echo "masternode=1" >> /home/genesisx5/genesisx.conf
-echo "rpcport=19016" >> /home/genesisx5/genesisx.conf
-echo "listen=0" >> /home/genesisx5/genesisx.conf
-echo "externalip=[${MNIP5}]:5555" >> /home/genesisx5/genesisx.conf
-echo "masternodeprivkey=$privkey5" >> /home/genesisx5/genesisx.conf
-if [[ $NULLREC = "y" ]] ; then
-echo "masterNode5 : true" >> /usr/local/nullentrydev/xgs.log
-echo "walletVersion5 : 1.4.0COINVERSION=1.6.0" >> /usr/local/nullentrydev/xgs.log
-echo "scriptVersion5 : 0.9d" >> /usr/local/nullentrydev/xgs.log
-fi
-sleep 5
-echo
-echo -e "${GREEN}Configuring sixth GenesisX Node${CLEAR}"
-sudo mkdir /home/genesisx6/.genesisx
-sudo touch /home/genesisx6/genesisx.conf
-echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/genesisx6/genesisx.conf
-echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/genesisx6/genesisx.conf
-echo "rpcallowip=127.0.0.1" >> /home/genesisx6/genesisx.conf
-echo "server=1" >> /home/genesisx6/genesisx.conf
-echo "daemon=1" >> /home/genesisx6/genesisx.conf
-echo "maxconnections=250" >> /home/genesisx6/genesisx.conf
-echo "masternode=1" >> /home/genesisx6/genesisx.conf
-echo "rpcport=19017" >> /home/genesisx6/genesisx.conf
-echo "listen=0" >> /home/genesisx6/genesisx.conf
-echo "externalip=[${MNIP6}]:5555" >> /home/genesisx6/genesisx.conf
-echo "masternodeprivkey=$privkey6" >> /home/genesisx6/genesisx.conf
-if [[ $NULLREC = "y" ]] ; then
-echo "masterNode6 : true" >> /usr/local/nullentrydev/xgs.log
-echo "walletVersion6 : 1.4.0COINVERSION=1.6.0" >> /usr/local/nullentrydev/xgs.log
-echo "scriptVersion6 : 0.9d" >> /usr/local/nullentrydev/xgs.log
-fi
-sleep 5
-echo
-echo -e "${GREEN}Configuring seventh GenesisX Node${CLEAR}"
-sudo mkdir /home/genesisx7/.genesisx
-sudo touch /home/genesisx7/genesisx.conf
-echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/genesisx7/genesisx.conf
-echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/genesisx7/genesisx.conf
-echo "rpcallowip=127.0.0.1" >> /home/genesisx7/genesisx.conf
-echo "server=1" >> /home/genesisx7/genesisx.conf
-echo "daemon=1" >> /home/genesisx7/genesisx.conf
-echo "maxconnections=250" >> /home/genesisx7/genesisx.conf
-echo "masternode=1" >> /home/genesisx7/genesisx.conf
-echo "rpcport=19018" >> /home/genesisx7/genesisx.conf
-echo "listen=0" >> /home/genesisx7/genesisx.conf
-echo "externalip=[${MNIP7}]:5555" >> /home/genesisx7/genesisx.conf
-echo "masternodeprivkey=$privkey7" >> /home/genesisx7/genesisx.conf
-if [[ $NULLREC = "y" ]] ; then
-echo "masterNode7 : true" >> /usr/local/nullentrydev/xgs.log
-echo "walletVersion7 : 1.4.0COINVERSION=1.6.0" >> /usr/local/nullentrydev/xgs.log
-echo "scriptVersion7 : 0.9d" >> /usr/local/nullentrydev/xgs.log
-fi
-sleep 5
-echo
-echo -e "${GREEN}Configuring eigth GenesisX Node${CLEAR}"
-sudo mkdir /home/genesisx8/.genesisx
-sudo touch /home/genesisx8/genesisx.conf
-echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/genesisx8/genesisx.conf
-echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/genesisx8/genesisx.conf
-echo "rpcallowip=127.0.0.1" >> /home/genesisx8/genesisx.conf
-echo "server=1" >> /home/genesisx8/genesisx.conf
-echo "daemon=1" >> /home/genesisx8/genesisx.conf
-echo "maxconnections=250" >> /home/genesisx8/genesisx.conf
-echo "masternode=1" >> /home/genesisx8/genesisx.conf
-echo "rpcport=19019" >> /home/genesisx8/genesisx.conf
-echo "listen=0" >> /home/genesisx8/genesisx.conf
-echo "externalip=[${MNIP8}]:5555" >> /home/genesisx8/genesisx.conf
-echo "masternodeprivkey=$privkey8" >> /home/genesisx8/genesisx.conf
-if [[ $NULLREC = "y" ]] ; then
-echo "masterNode8 : true" >> /usr/local/nullentrydev/xgs.log
-echo "walletVersion8 : 1.4.0COINVERSION=1.6.0" >> /usr/local/nullentrydev/xgs.log
-echo "scriptVersion8 : 0.9d" >> /usr/local/nullentrydev/xgs.log
-fi
-sleep 5
-echo
 echo -e "${RED}This process can take a while!${CLEAR}"
 echo -e "${YELLOW}Waiting on First Masternode Block Chain to Synchronize${CLEAR}"
 echo -e "${YELLOW}Once complete, it will stop and copy the block chain to${CLEAR}"
@@ -383,43 +258,13 @@ sudo cp -r /home/genesisx/.genesisx/* /home/genesisx2/.genesisx
 sleep 3
 sudo cp -r /home/genesisx/.genesisx/* /home/genesisx3/.genesisx
 sleep 3
-sudo cp -r /home/genesisx/.genesisx/* /home/genesisx4/.genesisx
-sleep 3
-sudo cp -r /home/genesisx/.genesisx/* /home/genesisx5/.genesisx
-sleep 3
-sudo cp -r /home/genesisx/.genesisx/* /home/genesisx6/.genesisx
-sleep 3
-sudo cp -r /home/genesisx/.genesisx/* /home/genesisx7/.genesisx
-sleep 3
-sudo cp -r /home/genesisx/.genesisx/* /home/genesisx8/.genesisx
-sleep 3
 rm /home/genesisx2/.genesisx/genesisx.conf
 sleep 1
 rm /home/genesisx3/.genesisx/genesisx.conf
 sleep 1
-rm /home/genesisx4/.genesisx/genesisx.conf
-sleep 1
-rm /home/genesisx5/.genesisx/genesisx.conf
-sleep 1
-rm /home/genesisx6/.genesisx/genesisx.conf
-sleep 1
-rm /home/genesisx7/.genesisx/genesisx.conf
-sleep 1
-rm /home/genesisx8/.genesisx/genesisx.conf
-sleep 1
 cp -r /home/genesisx2/genesisx.conf /home/genesisx2/.genesisx/genesisx.conf
 sleep 1
 cp -r /home/genesisx3/genesisx.conf /home/genesisx3/.genesisx/genesisx.conf
-sleep 1
-cp -r /home/genesisx4/genesisx.conf /home/genesisx4/.genesisx/genesisx.conf
-sleep 1
-cp -r /home/genesisx5/genesisx.conf /home/genesisx5/.genesisx/genesisx.conf
-sleep 1
-cp -r /home/genesisx6/genesisx.conf /home/genesisx6/.genesisx/genesisx.conf
-sleep 1
-cp -r /home/genesisx7/genesisx.conf /home/genesisx7/.genesisx/genesisx.conf
-sleep 1
-cp -r /home/genesisx8/genesisx.conf /home/genesisx8/.genesisx/genesisx.conf
 sleep 1
 echo -e ${YELLOW}"Launching First XGS Node"${CLEAR}
 genesisxd -datadir=/home/genesisx/.genesisx -daemon
@@ -430,21 +275,6 @@ sleep 20
 echo -e ${YELLOW}"Launching Third XGS Node"${CLEAR}
 genesisxd -datadir=/home/genesisx3/.genesisx -daemon
 sleep 20
-echo -e ${YELLOW}"Launching Fourth XGS Node"${CLEAR}
-genesisxd -datadir=/home/genesisx4/.genesisx -daemon
-sleep 20
-echo -e ${YELLOW}"Launching Fifth XGS Node"${CLEAR}
-genesisxd -datadir=/home/genesisx5/.genesisx -daemon
-sleep 20
-echo -e ${YELLOW}"Launching Sixth XGS Node"${CLEAR}
-genesisxd -datadir=/home/genesisx6/.genesisx -daemon
-sleep 20
-echo -e ${YELLOW}"Launching Seventh XGS Node"${CLEAR}
-genesisxd -datadir=/home/genesisx7/.genesisx -daemon
-sleep 20
-echo -e ${YELLOW}"Launching Eigth XGS Node"${CLEAR}
-genesisxd -datadir=/home/genesisx8/.genesisx -daemon
-sleep 20
 echo -e ${BOLD}"All ${NODESN} XGS Nodes Launched".${CLEAR}
 echo
 
@@ -453,22 +283,12 @@ echo -e "${YELLOW} genesisx-cli -datadir=/home/genesisx/.genesisx masternode sta
 echo -e "${YELLOW}For mn1: \"genesisx-cli -datadir=/home/genesisx/.genesisx masternode status\""${CLEAR}
 echo -e "${YELLOW}For mn2: \"genesisx-cli -datadir=/home/genesisx2/.genesisx masternode status\""${CLEAR}
 echo -e "${YELLOW}For mn3: \"genesisx-cli -datadir=/home/genesisx3/.genesisx masternode status\""${CLEAR}
-echo -e "${YELLOW}For mn4: \"genesisx-cli -datadir=/home/genesisx4/.genesisx masternode status\""${CLEAR}
-echo -e "${YELLOW}For mn5: \"genesisx-cli -datadir=/home/genesisx5/.genesisx masternode status\""${CLEAR}
-echo -e "${YELLOW}For mn6: \"genesisx-cli -datadir=/home/genesisx6/.genesisx masternode status\""${CLEAR}
-echo -e "${YELLOW}For mn7: \"genesisx-cli -datadir=/home/genesisx7/.genesisx masternode status\""${CLEAR}
-echo -e "${YELLOW}For mn8: \"genesisx-cli -datadir=/home/genesisx8/.genesisx masternode status\""${CLEAR}
 echo
 echo -e "${RED}Status 29 may take a few minutes to clear while the daemon processes the chainstate"${CLEAR}
 echo -e "${GREEN}The data below needs to be in your local masternode configuration file:${CLEAR}"
 echo -e "${BOLD} Masternode - \#1 IP: [${MNIP1}]:5555${CLEAR}"
 echo -e "${BOLD} Masternode - \#2 IP: [${MNIP2}]:5555${CLEAR}"
 echo -e "${BOLD} Masternode - \#3 IP: [${MNIP3}]:5555${CLEAR}"
-echo -e "${BOLD} Masternode - \#4 IP: [${MNIP4}]:5555${CLEAR}"
-echo -e "${BOLD} Masternode - \#5 IP: [${MNIP5}]:5555${CLEAR}"
-echo -e "${BOLD} Masternode - \#6 IP: [${MNIP6}]:5555${CLEAR}"
-echo -e "${BOLD} Masternode - \#7 IP: [${MNIP7}]:5555${CLEAR}"
-echo -e "${BOLD} Masternode - \#8 IP: [${MNIP8}]:5555${CLEAR}"
 fi
 echo -e ${BLUE}" Your patronage is appreciated, tipping addresses"${CLEAR}
 echo -e ${BLUE}" GenesisX address: GcToAa57WXPsVwXB9LKvui215AC3bsvneA"${CLEAR}
