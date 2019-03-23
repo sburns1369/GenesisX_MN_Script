@@ -1,5 +1,5 @@
 #!/bin/bash
-#0.9d-- NullEntryDev Script
+#0.99-- NullEntryDev Script
 NODESL=One
 NODESN=1
 BLUE='\033[0;96m'
@@ -27,11 +27,23 @@ echo -e ${BLUE}"Zero Confidental information or Wallet keys will be stored in it
 echo -e ${YELLOW}"Press y to agree followed by [ENTER], or just [ENTER] to disagree"${CLEAR}
 read NULLREC
 echo
+echo -e ${GREEN}"Would you like to enter custom IP addresses?"${CLEAR}
+echo -e ${YELLOW}"If you don't know the answer, hit n for no"${CLEAR}
+echo -e ${YELLOW}"If you have custom IPs hit y for yes"${CLEAR}
+read customIP
+echo "Creating ${NODESN} GenesisX system user(s) with no-login access:"
+if id "genesisx" >/dev/null 2>&1; then
+echo "user exists"
+MN1=1
+else
+sudo adduser --system --home /home/genesisx genesisx
+MN1=0
+fi
 echo
 echo
 echo
 echo
-echo -e ${RED}"Your Masternode Private Key is needed,"${CLEAR}
+echo -e ${RED}"Your New Masternode Private Key is needed,"${CLEAR}
 echo -e ${GREEN}" -which can be generated from the local wallet"${CLEAR}
 echo
 echo -e ${YELLOW}"You can edit the config later if you don't have this"${CLEAR}
@@ -40,11 +52,13 @@ echo -e ${YELLOW}"And the script installation will hang and fail"${CLEAR}
 echo
 echo -e ${YELLOW}"Right Click to paste in some SSH Clients"${CLEAR}
 echo
+if [[ "$MN1" -eq "0" ]]; then
 echo -e ${GREEN}"Please Enter Your Masternode Private Key:"${CLEAR}
-read privkey
+read MNKEY
 echo
-echo "Creating ${NODESN} GenesisX system users with no-login access:"
-sudo adduser --system --home /home/genesisx genesisx
+else
+echo -e ${YELLOW}"Skipping First Masternode Key"${CLEAR}
+fi
 cd ~
 if [[ $NULLREC = "y" ]] ; then
 if [ ! -d /usr/local/nullentrydev/ ]; then
@@ -97,6 +111,10 @@ if [[ $NULLREC = "y" ]] ; then
 echo "dependenciesInstalled: true" >> /usr/local/nullentrydev/mnodes.log
 fi
 fi
+if [[ customIP = "y" ]] ; then
+echo -e ${GREEN}"IP for Masternode 1"${CLEAR}
+read MNIP1
+else
 regex='^([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4}$'
 FINDIP=$(hostname -I | cut -f2 -d' '| cut -f1-7 -d:)
 if [[ $FINDIP =~ $regex ]]; then
@@ -112,7 +130,7 @@ echo $FINDIP - testing note 2
 FINDIP=$(hostname -I | cut -f3 -d' '| cut -f1-8 -d:)
 echo $FINDIP - check 3
 echo "Attempting to adjust results and re-calculate IPv6 Address"
-TESTIP=$(sipcalc ${FINDIP} | fgrep Expanded | cut -d ' ' -f3)
+FINDIP=$(sipcalc ${FINDIP} | fgrep Expanded | cut -d ' ' -f3)
 if [[ $FINDIP =~ $regex ]]; then
 FINDIP=$(echo ${FINDIP} | cut -f1-7 -d:)
 echo "IPv6 Address check is good"
@@ -129,25 +147,80 @@ echo -e ${YELLOW} "Building IP Tables"${CLEAR}
 sudo touch ip.tmp
 for i in {15361..15375}; do printf "${IP}:%.4x\n" $i >> ip.tmp; done
 MNIP1=$(sed -n '1p' < ip.tmp)
-MNIP2=$(sed -n '2p' < ip.tmp)
-MNIP3=$(sed -n '3p' < ip.tmp)
-MNIP4=$(sed -n '4p' < ip.tmp)
-MNIP5=$(sed -n '5p' < ip.tmp)
-MNIP6=$(sed -n '6p' < ip.tmp)
-MNIP7=$(sed -n '7p' < ip.tmp)
-MNIP8=$(sed -n '8p' < ip.tmp)
-if [[ $NULLREC = "y" ]] ; then
-sudo touch /usr/local/nullentrydev/iptable.log
-sudo cp ip.tmp >> /usr/local/nullentrydev/iptable.log
-fi
 rm -rf ip.tmp
+fi
+if grep -Fxq "swapInstalled: true" /usr/local/nullentrydev/mnodes.log
+then
+echo -e ${RED}"Skipping... Swap Area already made"${CLEAR}
+else
 cd /var
 sudo touch swap.img
 sudo chmod 600 swap.img
 sudo dd if=/dev/zero of=/var/swap.img bs=1024k count=4096
 sudo mkswap /var/swap.img
 sudo swapon /var/swap.img
+if [[ $NULLREC = "y" ]] ; then
+echo "swapInstalled: true" >> /usr/local/nullentrydev/mnodes.log
+fi
+fi
 cd ~
+touch xgscheck.tmp
+ps aux | grep genesisx >> xgscheck.tmp
+if grep home/genesisx/.genesisx xgscheck.tmp
+then
+echo Found OLD ${NC} xgs Node running
+OldNode="1"
+else
+echo No ${NC} xgs Node not running
+OldNode="0"
+fi
+until [[ $NC = 9 ]]; do
+if grep /home/genesisx${NC}/.genesisx xgscheck.tmp
+then
+echo Found ${NC} xgs Node running
+declare IPN$NC="1"
+RB=1
+else
+echo No ${NC} xgs Node not running
+declare IPN$NC="0"
+echo $NC
+fi
+NC=$[$NC+1]
+done
+rm -r xgscheck.tmp
+if [[ "$OldNode" = "1" ]]; then
+genesisx-cli -datadir=/home/genesisx/.genesisx stop
+fi
+if [[ "$IPN1" = "1" ]]; then
+genesisx-cli -datadir=/home/genesisx1/.genesisx stop
+fi
+if [[ "$IPN2" = "1" ]]; then
+genesisx-cli -datadir=/home/genesisx2/.genesisx stop
+fi
+if [[ "$IPN3" = "1" ]]; then
+genesisx-cli -datadir=/home/genesisx3/.genesisx stop
+fi
+if [[ "$IPN4" = "1" ]]; then
+genesisx-cli -datadir=/home/genesisx4/.genesisx stop
+fi
+if [[ "$IPN5" = "1" ]]; then
+genesisx-cli -datadir=/home/genesisx5/.genesisx stop
+fi
+if [[ "$IPN6" = "1" ]]; then
+genesisx-cli -datadir=/home/genesisx6/.genesisx stop
+fi
+if [[ "$IPN7" = "1" ]]; then
+genesisx-cli -datadir=/home/genesisx7/.genesisx stop
+fi
+if [[ "$IPN8" = "1" ]]; then
+genesisx-cli -datadir=/home/genesisx8/.genesisx stop
+fi
+if [[ "$IPN9" = "1" ]]; then
+genesisx-cli -datadir=/home/genesisx9/.genesisx stop
+fi
+if [[ "$IPN0" = "1" ]]; then
+genesisx-cli -datadir=/home/genesisx0/.genesisx stop
+fi
 if [ ! -d /root/xgs ]; then
 sudo mkdir /root/xgs
 fi
@@ -159,6 +232,7 @@ sleep 3
 sudo mv /root/xgs/genesisxd /root/xgs/genesisx-cli /usr/local/bin
 sudo chmod 755 -R /usr/local/bin/genesisx*
 rm -rf /root/xgs
+if [ ! -f /home/genesisx/.genesisx/genesisx.conf ]; then
 echo -e "${GREEN}Configuring GenesisX Node${CLEAR}"
 sudo mkdir /home/genesisx/.genesisx
 sudo touch /home/genesisx/.genesisx/genesisx.conf
@@ -172,13 +246,23 @@ echo "masternode=1" >> /home/genesisx/.genesisx/genesisx.conf
 echo "rpcport=19012" >> /home/genesisx/.genesisx/genesisx.conf
 echo "listen=0" >> /home/genesisx/.genesisx/genesisx.conf
 echo "externalip=[${MNIP1}]:5555" >> /home/genesisx/.genesisx/genesisx.conf
-echo "masternodeprivkey=$privkey" >> /home/genesisx/.genesisx/genesisx.conf
+echo "masternodeprivkey=$MNKEY" >> /home/genesisx/.genesisx/genesisx.conf
+echo "addnode=23.94.102.195" >> /home/genesisx/.genesisx/genesisx.conf
+echo "addnode=159.203.20.15" >> /home/genesisx/.genesisx/genesisx.conf
+echo "addnode=142.93.175.237" >> /home/genesisx/.genesisx/genesisx.conf
+echo "addnode=138.197.216.248" >> /home/genesisx/.genesisx/genesisx.conf
+echo "addnode=163.172.148.199" >> /home/genesisx/.genesisx/genesisx.conf
+echo "addnode=140.82.47.203" >> /home/genesisx/.genesisx/genesisx.conf
+MN1=0
 if [[ $NULLREC = "y" ]] ; then
 echo "masterNode1 : true" >> /usr/local/nullentrydev/xgs.log
-echo "walletVersion1 : 1.4.0COINVERSION=1.6.0" >> /usr/local/nullentrydev/xgs.log
-echo "scriptVersion1 : 0.9d" >> /usr/local/nullentrydev/xgs.log
+echo "walletVersion1 : 1.4.0" >> /usr/local/nullentrydev/xgs.log
+echo "scriptVersion1 : 0.99" >> /usr/local/nullentrydev/xgs.log
 fi
-sleep 5
+else
+echo -e ${YELLOW}"Found /home/genesisx/.genesisx/genesisx.conf"${CLEAR}
+echo -e ${YELLOW}"Skipping Configuration there"${CLEAR}
+fi
 echo
 echo -e ${YELLOW}"Launching XGS Node"${CLEAR}
 genesisxd -datadir=/home/genesisx/.genesisx -daemon
@@ -188,7 +272,6 @@ echo -e ${YELLOW}"Support my Project, and put your loose change to work for you!
 echo -e ${YELLOW}" https://www.cryptohashtank.com/TJIF "${CLEAR}
 echo
 echo -e ${YELLOW}"Special Thanks to the BitcoinGenX (BGX) Community" ${CLEAR}
-echo
 sleep 20
 echo -e "${RED}This process can take a while!${CLEAR}"
 echo -e "${YELLOW}Waiting on Masternode Block Chain to Synchronize${CLEAR}"
