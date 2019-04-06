@@ -1,7 +1,7 @@
 #!/bin/bash
 #0.99-- NullEntryDev Script
-NODESL=Eight
-NODESN=8
+NODESL=Six
+NODESN=6
 BLUE='\033[0;96m'
 GREEN='\033[0;92m'
 RED='\033[0;91m'
