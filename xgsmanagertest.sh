@@ -9,7 +9,7 @@ XGSC=0
 #Coinname Lowercase
 COINl=genesisx
 #Coin ticket symbol
-COIN3=SCN
+COIN3=XGS
 COINDAEMON=genesisxd
 COINDAEMONCLI=genesisx-cli
 COINCORE=.genesisx
@@ -66,7 +66,7 @@ echo -e ${CLEAR}
 #start Masternode
 stop_masternode(){
   echo -e ${GREEN}"Stopping Masternode ${nodeunit}" ${YELLOW}
-securecloud-cli -datadir=${COINHOME}${nodeunit}/${COINCORE} stop
+${COINDAEMONCLI} -datadir=${COINHOME}${nodeunit}/${COINCORE} stop
 sleep 15
 echo -e ${CLEAR}
 }
@@ -172,7 +172,8 @@ display_MN_Status(){
   echo "~~~~~~~~~~~~~~~~~~~~~"
 	echo "   Displaying display_MN_Status"
 	echo "~~~~~~~~~~~~~~~~~~~~~"
-  echo -e "01 - Masternode One (1.0 and new install)"
+  echo -e "L - Legacy Masternode One Status"
+  echo -e "01 - (Not This one, you have legacy) (1.0 and new install)"
   echo -e "02 - Masternode Two"
   echo -e "03 - Masternode Three"
   echo -e "04 - Masternode Four"
@@ -182,7 +183,6 @@ display_MN_Status(){
   echo -e "08 - Masternode Eight"
   echo -e "09 - Masternode Nine"
   echo -e "10 - Masternode Ten"
-  echo -e "L - Legacy Masternode One Status"
   echo -e "B - Back out of Menu"
   echo -e "X - Exit"
   read_display_MN_Status
