@@ -9,7 +9,7 @@ XGSC=0
 #Coinname Lowercase
 COINl=genesisx
 #Coin ticket symbol
-COIN3=XGS
+COIN3=SCN
 COINDAEMON=genesisxd
 COINDAEMONCLI=genesisx-cli
 COINCORE=.genesisx
@@ -36,9 +36,9 @@ show_mainMenu() {
 	echo " M A I N - M E N U"
 	echo "~~~~~~~~~~~~~~~~~~~~~"
   echo -e "1 - My Masternode(s) Status"
-  echo -e "2 - Install or Add Masternodes"
+  echo -e " - Install or Add Masternodes"
   echo -e "3 - Masternode Manager"
-  echo -e "4 - Donate - test for find"
+  echo -e " - Donate - test for find"
 	echo -e "X - Exit"
   read_MainMenuOptions
 }
@@ -52,7 +52,7 @@ read_MainMenuOptions(){
     3) manager_XGSMasternodes;;
     4) find_Masternodes_test ;;
     x) exit 0;;
-		*) echo -e "${RED}Error...${STD}" && sleep 2
+		*) echo -e "${RED}Error...${STD}" ${CLEAR} && sleep 2
 	esac
 }
 #start Masternode
@@ -199,6 +199,8 @@ read_display_MN_Status(){
 	case $choice in
     l) nodeunit=
     display_MN_choice ;;
+    L) nodeunit=
+    display_MN_choice ;;
     1) nodeunit=1
     display_MN_choice ;;
     2) nodeunit=2
@@ -281,14 +283,15 @@ nodeunit=0
 until [[ $nodeunit = 10 ]]; do
 function_find_Masternodes
 nodeunit=$[$nodeunit+1]
-if [ ${nodeunit} -eq "4" ]; then
-  pause
-fi
+#if [ ${nodeunit} -eq "4" ]; then
+#  pause
+#fi
 done
 pause
 }
 # Find Masternode Test Function
 function_find_Masternodes(){
+  if [ -d /home/${COINl}${nodeunit} ]; then
     if [ -z ${nodeunit} ]; then
     echo -e ${GREEN}"Found XGS-Oldnode Installation Found - /home/${COINl}" ${CLEAR}
   else
@@ -316,12 +319,22 @@ XGS=$XGS+1
 else
   if [ ! -z ${nodeunit} ]; then
 echo -e ${RED}"No Installation Found for Masternode ${nodeunit} - /home/${COINl}${nodeunit}" ${CLEAR}
+  fi
 fi
 fi
 echo
 }
+first_run(){
+if [ ! -d /usr/local/nullentrydev/ ]; then
+    echo "Making /usr/local/nullentrydev "
+    sudo mkdir /usr/local/nullentrydev
+  else
+    echo "Found /usr/local/nullentrydev "
+fi
 ###end test find masternode function
 #Program Core
+}
+first_run
 while true
 do
 	show_mainMenu
