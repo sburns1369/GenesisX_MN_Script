@@ -545,6 +545,7 @@ pause
 }
 # Find Masternode Test Function
 function_find_Masternodes(){
+local choice
   if [ -d /home/${COINl}${nodeunit} ]; then
     if [ -z ${nodeunit} ]; then
     echo -e ${GREEN}"Found XGS-Oldnode Installation Found - /home/${COINl}" ${CLEAR}
@@ -558,6 +559,18 @@ function_find_Masternodes(){
     echo -e ${YELLOW} "Masternode is still loading block Index, please wait." ${CLEAR}
     elif grep -q "Masternode successfully started" ${DPATH}XGSMN${nodeunit}.tmp; then
       echo -e ${GREEN} "Masternode Successfully Started" ${CLEAR}
+    elif grep -q "error: couldn't connect to server" ${DPATH}XGSMN${nodeunit}.tmp; then
+      echo -e ${RED} "Masternode not running, Please Start"
+      echo
+      echo -e ${GREEN} "Would you like to attempt to start the Masternode? (Y/N) "
+      read -p "Enter choice : " choice
+      case $choice in
+        y) start_masternode ;;
+        Y) start_masternode ;;
+        n) echo -e "backing out" ;;
+        N) echo -e "backing out" ;;
+        *) echo -e "${RED}Error...${STD}" ${CLEAR} && sleep 2
+      esac
       ${COINDAEMONCLI} -datadir=${COINHOME}${nodeunit}/${COINCORE} masternode status &> ${DPATH}XGSMN${nodeunit}.tmp
       DISPIP=$(sed -n '4p' < /usr/local/nullentrydev/XGSMN${nodeunit}.tmp | cut -d'"' -f4 | cut -d':' -f1)
         if [[ "$DISPIP" =~ (([01]{,1}[0-9]{1,2}|2[0-4][0-9]|25[0-5])\.([01]{,1}[0-9]{1,2}|2[0-4][0-9]|25[0-5])\.([01]{,1}[0-9]{1,2}|2[0-4][0-9]|25[0-5])\.([01]{,1}[0-9]{1,2}|2[0-4][0-9]|25[0-5]))$ ]]; then
@@ -566,14 +579,14 @@ function_find_Masternodes(){
         DISPIP=$(sed -n '4p' < /usr/local/nullentrydev/XGSMN${nodeunit}.tmp | cut -d'"' -f4 | cut -d':' -f1-8)
           echo -e "Running on IPv6 : ${YELLOW} ${DISPIP}" ${CLEAR}
         fi
-      rm -r /usr/local/nullentrydev/XGSMN${nodeunit}.tmp
+        rm -r /usr/local/nullentrydev/XGSMN${nodeunit}.tmp
 #        echo "Running on IP : ${DISPIP}"
 XGSOld="1"
 XGS=$XGS+1
-else
-  if [ ! -z ${nodeunit} ]; then
-echo -e ${RED}"No Installation Found for Masternode ${nodeunit} - /home/${COINl}${nodeunit}" ${CLEAR}
-  fi
+#else
+#  if [ ! -z ${nodeunit} ]; then
+# echo -e ${RED}"No Installation Found for Masternode ${nodeunit} - /home/${COINl}${nodeunit}" ${CLEAR}
+#  fi
 fi
 fi
 echo
