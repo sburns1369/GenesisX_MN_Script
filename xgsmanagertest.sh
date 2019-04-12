@@ -36,9 +36,9 @@ show_mainMenu() {
 	echo " M A I N - M E N U"
 	echo "~~~~~~~~~~~~~~~~~~~~~"
   echo -e "1 - My Masternode(s) Status"
-  echo -e " - Install or Add Masternodes"
+  echo -e "2 - Install or Add Masternodes (Not Implimented)"
   echo -e "3 - Masternode Manager"
-  echo -e " - Donate - test for find"
+  echo -e "4 - Donate - (Not Implimented)"
 	echo -e "X - Exit"
   read_MainMenuOptions
 }
@@ -57,26 +57,34 @@ read_MainMenuOptions(){
 }
 #start Masternode
 start_masternode(){
-  echo -e ${GREEN}"Starting Masternode ${nodeunit}" ${CLEAR}
-  echo -e "Please wait" ${YELLOW}
-${COINDAEMON} -datadir=${COINHOME}${nodeunit}/${COINCORE} -daemon
-sleep 15
-echo -e ${CLEAR}
+  if [ -d /home/${COINl}${nodeunit} ]; then
+    echo -e ${GREEN}"Starting Masternode ${nodeunit}" ${CLEAR}
+    echo -e "Please wait" ${YELLOW}
+    ${COINDAEMON} -datadir=${COINHOME}${nodeunit}/${COINCORE} -daemon
+    sleep 15
+    echo -e ${CLEAR}
+  else
+    echo -e "Here be dragons"
+  fi
 }
 #start Masternode
 stop_masternode(){
-  echo -e ${GREEN}"Stopping Masternode ${nodeunit}" ${YELLOW}
-${COINDAEMONCLI} -datadir=${COINHOME}${nodeunit}/${COINCORE} stop
-sleep 15
-echo -e ${CLEAR}
+  if [ -d /home/${COINl}${nodeunit} ]; then
+    echo -e ${GREEN}"Stopping Masternode ${nodeunit}" ${YELLOW}
+    ${COINDAEMONCLI} -datadir=${COINHOME}${nodeunit}/${COINCORE} stop
+    sleep 15
+    echo -e ${CLEAR}
+  else
+    echo -e "Here be dragons"
+  fi
 }
 #edit Masternode Configuration
 edit_masternode(){
   echo -e ${GREEN}"Editing Masternode ${nodeunit} Configuration" ${CLEAR}
-  echo -e ${GREEN}"Use [Control Key] + [X Key] to exit editting" ${CLEAR}
-  echo -e ${GREEN}"Press [N Key] to Abort Changes in editor" ${CLEAR}
-  echo -e ${GREEN}"Or press [Y Key] to Save Changes" ${CLEAR}
-  echo -e ${GREEN}"Than [Enter Key] to Accept Changes to File Name" ${CLEAR}
+  echo -e ${YELLOW}"Use [Control Key] + [X Key] to exit editting" ${CLEAR}
+  echo -e ${YELLOW}"Press [N Key] to Abort Changes in editor" ${CLEAR}
+  echo -e ${YELLOW}"Or press [Y Key] to Save Changes" ${CLEAR}
+  echo -e ${YELLOW}"Than [Enter Key] to Accept Changes to File Name" ${CLEAR}
   pause
   nano ${COINHOME}${nodeunit}/${COINCORE}/${COINCONFIG}
   echo -e ${CLEAR}
@@ -91,7 +99,7 @@ manager_XGSMasternodes(){
   echo -e "2 - Edit Configuration"
   echo -e "3 - Start Masternode(s)"
   echo -e "4 - Stop Masternode(s)"
-  echo -e "5 - Rebuild Chain"
+  echo -e "5 - Rebuild Chain (Not Implimented)"
 	echo -e "X - Exit"
   read_manager_XGSMasternodes
 }
@@ -102,37 +110,261 @@ read_manager_XGSMasternodes(){
 	case $choice in
     1) display_MN_Status ;;
     2) Edit_MN_Status ;;
+    3) manager_Start_Masternodes ;;
+    4) manager_stop_Masternodes ;;
     x) exit 0;;
 		*) echo -e "${RED}Error...${STD}" ${CLEAR} && sleep 2
 	esac
 }
+## end MN Start Menu options
+#start_masternodes_Menu
+manager_Start_Masternodes(){
+  clear
+  echo "~~~~~~~~~~~~~~~~~~~~~"
+  echo "   Start Masternode(s)"
+  echo "~~~~~~~~~~~~~~~~~~~~~"
+  if [ -d /home/${COINl} ]; then
+  echo -e "L - Legacy Masternode One Status"
+  fi
+  if [ -d /home/${COINl}1 ]; then
+  echo -e "01 - (Not This one, you have legacy) (1.0 and new install)"
+  fi
+  if [ -d /home/${COINl}2 ]; then
+  echo -e "02 - Masternode Two"
+  fi
+  if [ -d /home/${COINl}3 ]; then
+  echo -e "03 - Masternode Three"
+  fi
+  if [ -d /home/${COINl}4 ]; then
+  echo -e "04 - Masternode Four"
+  fi
+  if [ -d /home/${COINl}5 ]; then
+  echo -e "05 - Masternode Five"
+  fi
+  if [ -d /home/${COINl}6 ]; then
+  echo -e "06 - Masternode Six"
+  fi
+  if [ -d /home/${COINl}7 ]; then
+  echo -e "07 - Masternode Seven"
+  fi
+  if [ -d /home/${COINl}8 ]; then
+  echo -e "08 - Masternode Eight"
+  fi
+  if [ -d /home/${COINl}9 ]; then
+  echo -e "09 - Masternode Nine"
+  fi
+  if [ -d /home/${COINl}0 ]; then
+  echo -e "10 - Masternode Ten"
+  fi
+  echo -e "A - Start All ${COIN3} Masternodes"
+  echo -e "B - Back out of Menu"
+  echo -e "X - Exit"
+  read_Start_Masternodes
+}
+#start - read Start Masternodes Menu
+read_Start_Masternodes(){
+  local choice
+	read -p "Enter choice " choice
+  case $choice in
+    l) nodeunit=
+    start_masternode ;;
+    1) nodeunit=1
+    start_masternode ;;
+    2) nodeunit=2
+    start_masternode ;;
+    3) nodeunit=3
+    start_masternode ;;
+    4) nodeunit=4
+    start_masternode ;;
+    5) nodeunit=5
+    start_masternode ;;
+    6) nodeunit=6
+    start_masternode ;;
+    7) nodeunit=7
+    start_masternode ;;
+    8) nodeunit=8
+    start_masternode ;;
+    9) nodeunit=9
+    start_masternode ;;
+    10) nodeunit=0
+    start_masternode ;;
+    a) echo -e "Launching all Masters!"
+    start_All_Nodes ;;
+    A) echo -e "Launching all Masters!"
+    start_All_Nodes ;;
+    b) echo -e "backing out" ;;
+    B) echo -e "backing out" ;;
+    x) exit 0;;
+    X) exit 0;;
+    *) echo -e "${RED}Error...${STD}" ${CLEAR} && sleep 2
+  esac
+}
+#End - read Start Masternodes Menu
+## Start ALL MN function
+start_All_Nodes(){
+local Count
+Count=0
+nodeunit=
+start_masternode
+nodeunit=0
+until [[ $nodeunit = 10 ]]; do
+start_masternode
+nodeunit=$[$nodeunit+1]
+done
+pause
+}
+##  end of Start ALL MN function
+#start Edit Masternode Status Menu
 Edit_MN_Status(){
   clear
   echo "~~~~~~~~~~~~~~~~~~~~~"
 	echo "   Edit Masternode Configuration"
 	echo "~~~~~~~~~~~~~~~~~~~~~"
-  echo -e "01 - Masternode One (1.0 and new install)"
-  echo -e "02 - Masternode Two"
-  echo -e "03 - Masternode Three"
-  echo -e "04 - Masternode Four"
-  echo -e "05 - Masternode Five"
-  echo -e "06 - Masternode Six"
-  echo -e "07 - Masternode Seven"
-  echo -e "08 - Masternode Eight"
-  echo -e "09 - Masternode Nine"
-  echo -e "10 - Masternode Ten"
+  if [ -d /home/${COINl} ]; then
   echo -e "L - Legacy Masternode One Status"
+  fi
+  if [ -d /home/${COINl}1 ]; then
+  echo -e "01 - (Not This one, you have legacy) (1.0 and new install)"
+  fi
+  if [ -d /home/${COINl}2 ]; then
+  echo -e "02 - Masternode Two"
+  fi
+  if [ -d /home/${COINl}3 ]; then
+  echo -e "03 - Masternode Three"
+  fi
+  if [ -d /home/${COINl}4 ]; then
+  echo -e "04 - Masternode Four"
+  fi
+  if [ -d /home/${COINl}5 ]; then
+  echo -e "05 - Masternode Five"
+  fi
+  if [ -d /home/${COINl}6 ]; then
+  echo -e "06 - Masternode Six"
+  fi
+  if [ -d /home/${COINl}7 ]; then
+  echo -e "07 - Masternode Seven"
+  fi
+  if [ -d /home/${COINl}8 ]; then
+  echo -e "08 - Masternode Eight"
+  fi
+  if [ -d /home/${COINl}9 ]; then
+  echo -e "09 - Masternode Nine"
+  fi
+  if [ -d /home/${COINl}0 ]; then
+  echo -e "10 - Masternode Ten"
+  fi
   echo -e "B - Back out of Menu"
   echo -e "X - Exit"
   edit_MN_Config
 }
+#stop_masternodes_Menu
+manager_stop_Masternodes(){
+  clear
+  echo "~~~~~~~~~~~~~~~~~~~~~"
+  echo "   stop Masternode(s)"
+  echo "~~~~~~~~~~~~~~~~~~~~~"
+  if [ -d /home/${COINl} ]; then
+  echo -e "L - Legacy Masternode One Status"
+  fi
+  if [ -d /home/${COINl}1 ]; then
+  echo -e "01 - (Not This one, you have legacy) (1.0 and new install)"
+  fi
+  if [ -d /home/${COINl}2 ]; then
+  echo -e "02 - Masternode Two"
+  fi
+  if [ -d /home/${COINl}3 ]; then
+  echo -e "03 - Masternode Three"
+  fi
+  if [ -d /home/${COINl}4 ]; then
+  echo -e "04 - Masternode Four"
+  fi
+  if [ -d /home/${COINl}5 ]; then
+  echo -e "05 - Masternode Five"
+  fi
+  if [ -d /home/${COINl}6 ]; then
+  echo -e "06 - Masternode Six"
+  fi
+  if [ -d /home/${COINl}7 ]; then
+  echo -e "07 - Masternode Seven"
+  fi
+  if [ -d /home/${COINl}8 ]; then
+  echo -e "08 - Masternode Eight"
+  fi
+  if [ -d /home/${COINl}9 ]; then
+  echo -e "09 - Masternode Nine"
+  fi
+  if [ -d /home/${COINl}0 ]; then
+  echo -e "10 - Masternode Ten"
+  fi
+  echo -e "A - stop All ${COIN3} Masternodes"
+  echo -e "B - Back out of Menu"
+  echo -e "X - Exit"
+  read_stop_Masternodes
+}
+#stop - read stop Masternodes Menu
+read_stop_Masternodes(){
+  local choice
+	read -p "Enter choice " choice
+  case $choice in
+    l) nodeunit=
+    stop_masternode ;;
+    1) nodeunit=1
+    stop_masternode ;;
+    2) nodeunit=2
+    stop_masternode ;;
+    3) nodeunit=3
+    stop_masternode ;;
+    4) nodeunit=4
+    stop_masternode ;;
+    5) nodeunit=5
+    stop_masternode ;;
+    6) nodeunit=6
+    stop_masternode ;;
+    7) nodeunit=7
+    stop_masternode ;;
+    8) nodeunit=8
+    stop_masternode ;;
+    9) nodeunit=9
+    stop_masternode ;;
+    10) nodeunit=0
+    stop_masternode ;;
+    a) echo -e "Stopping all Masters!"
+    stop_All_Nodes ;;
+    B) echo -e "Stopping all Masters!"
+    stop_All_Nodes ;;
+    b) echo -e "backing out" ;;
+    B) echo -e "backing out" ;;
+    x) exit 0;;
+    X) exit 0;;
+    *) echo -e "${RED}Error...${STD}" ${CLEAR} && sleep 2
+  esac
+}
+#End - read stop Masternodes Menu
+## stop ALL MN function
+stop_All_Nodes(){
+local Count
+Count=0
+nodeunit=
+stop_masternode
+nodeunit=0
+until [[ $nodeunit = 10 ]]; do
+stop_masternode
+nodeunit=$[$nodeunit+1]
+done
+pause
+}
+##  end of stop ALL MN function
 #Function set for Edit MN Config Menu
 edit_menu_choice(){
-  clear
-  echo -e "Stopping Masternode to Prevent "
-  stop_masternode
-  edit_masternode
-  start_masternode
+  if [ -d /home/${COINl}${nodeunit} ]; then
+    clear
+    echo -e "Stopping Masternode to Prevent Problems, please wait"
+    stop_masternode
+    edit_masternode
+    start_masternode
+  else
+    echo -e "Here be dragons!"
+  fi
 }
 edit_MN_Config(){
   local choice
@@ -172,17 +404,39 @@ display_MN_Status(){
   echo "~~~~~~~~~~~~~~~~~~~~~"
 	echo "   Displaying display_MN_Status"
 	echo "~~~~~~~~~~~~~~~~~~~~~"
+  if [ -d /home/${COINl} ]; then
   echo -e "L - Legacy Masternode One Status"
+  fi
+  if [ -d /home/${COINl}1 ]; then
   echo -e "01 - (Not This one, you have legacy) (1.0 and new install)"
+  fi
+  if [ -d /home/${COINl}2 ]; then
   echo -e "02 - Masternode Two"
+  fi
+  if [ -d /home/${COINl}3 ]; then
   echo -e "03 - Masternode Three"
+  fi
+  if [ -d /home/${COINl}4 ]; then
   echo -e "04 - Masternode Four"
+  fi
+  if [ -d /home/${COINl}5 ]; then
   echo -e "05 - Masternode Five"
+  fi
+  if [ -d /home/${COINl}6 ]; then
   echo -e "06 - Masternode Six"
+  fi
+  if [ -d /home/${COINl}7 ]; then
   echo -e "07 - Masternode Seven"
+  fi
+  if [ -d /home/${COINl}8 ]; then
   echo -e "08 - Masternode Eight"
+  fi
+  if [ -d /home/${COINl}9 ]; then
   echo -e "09 - Masternode Nine"
+  fi
+  if [ -d /home/${COINl}0 ]; then
   echo -e "10 - Masternode Ten"
+  fi
   echo -e "B - Back out of Menu"
   echo -e "X - Exit"
   read_display_MN_Status

@@ -36,7 +36,7 @@ if id "genesisx" >/dev/null 2>&1; then
 echo "user exists"
 MN1=1
 else
-sudo adduser --system --home /home/genesisx genesisx
+sudo adduser --system --home /home/genesisx0 genesisx0
 MN1=0
 fi
 echo
