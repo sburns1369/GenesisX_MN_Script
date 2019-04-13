@@ -591,16 +591,40 @@ fi
 fi
 echo
 }
+precheck_install(){
+  local NULLREC
+  # Permission to Store/Make nullentrydev files ####
+  echo -e ${BLUE}"May this script will store a small amount data in /usr/local/nullentrydev/ ?"${CLEAR}
+  echo -e ${BLUE}"This information is for version updates and later implimentation"${CLEAR}
+  echo -e ${BLUE}"Zero Confidental information or Wallet keys will be stored in it"${CLEAR}
+  echo -e ${YELLOW}"Press Y to agree, or N [ENTER] to disagree and cancel"${CLEAR}
+  read  -p "Enter choice : " NULLREC
+  case $NULLREC in
+    y) echo proceeding ;;
+    Y) echo proceeding ;;
+    n) exit 0 ;;
+    N) exit 0 ;;
+    *) echo -e "${RED}Error...${STD}" ${CLEAR} && sleep 2 && precheck_install
+  esac
+}
+# Operating Systems Check
 first_run(){
-if [ ! -d /usr/local/nullentrydev/ ]; then
+  if [[ $(lsb_release -d) != *16.04* ]]; then
+    echo -e ${RED}"The operating system is not Ubuntu 16.04. You must be running on ubuntu 16.04."${CLEAR}
+    exit 1
+  fi
+  precheck_install
+#Null Entry Logs configuration file check
+  if [ ! -d /usr/local/nullentrydev/ ]; then
     echo "Making /usr/local/nullentrydev "
     sudo mkdir /usr/local/nullentrydev
   else
     echo "Found /usr/local/nullentrydev "
-fi
+  fi
 ###end test find masternode function
 #Program Core
 }
+clear
 first_run
 while true
 do
