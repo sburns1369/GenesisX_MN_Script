@@ -29,6 +29,61 @@ CLEAR='\033[0m'
 pause(){
   read -p "Press [Enter] key to continue..." fackEnterKey
 }
+#Null Entry logo
+null_logo(){
+echo
+echo
+echo
+echo -e ${BLUE} "   ███╗   ██╗██╗   ██╗██╗     ██╗     ███████╗███╗   ██╗████████╗██████╗ ██╗   ██╗    ";
+echo "    ████╗  ██║██║   ██║██║     ██║     ██╔════╝████╗  ██║╚══██╔══╝██╔══██╗╚██╗ ██╔╝    ";
+echo "    ██╔██╗ ██║██║   ██║██║     ██║     █████╗  ██╔██╗ ██║   ██║   ██████╔╝ ╚████╔╝     ";
+echo "    ██║╚██╗██║██║   ██║██║     ██║     ██╔══╝  ██║╚██╗██║   ██║   ██╔══██╗  ╚██╔╝      ";
+echo "    ██║ ╚████║╚██████╔╝███████╗███████╗███████╗██║ ╚████║   ██║   ██║  ██║   ██║       ";
+echo "    ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚══════╝╚══════╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝   ╚═╝       ";
+echo "                                                                                       ";
+echo "███╗   ███╗ █████╗ ███████╗████████╗███████╗██████╗ ███╗   ██╗ ██████╗ ██████╗ ███████╗";
+echo "████╗ ████║██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗████╗  ██║██╔═══██╗██╔══██╗██╔════╝";
+echo "██╔████╔██║███████║███████╗   ██║   █████╗  ██████╔╝██╔██╗ ██║██║   ██║██║  ██║█████╗  ";
+echo "██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗██║╚██╗██║██║   ██║██║  ██║██╔══╝  ";
+echo "██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║██║ ╚████║╚██████╔╝██████╔╝███████╗";
+echo "╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝";
+echo "                                                                                       ";
+echo "            ███╗   ███╗ █████╗ ███╗   ██╗ █████╗  ██████╗ ███████╗██████╗              ";
+echo "            ████╗ ████║██╔══██╗████╗  ██║██╔══██╗██╔════╝ ██╔════╝██╔══██╗             ";
+echo "            ██╔████╔██║███████║██╔██╗ ██║███████║██║  ███╗█████╗  ██████╔╝             ";
+echo "            ██║╚██╔╝██║██╔══██║██║╚██╗██║██╔══██║██║   ██║██╔══╝  ██╔══██╗             ";
+echo "            ██║ ╚═╝ ██║██║  ██║██║ ╚████║██║  ██║╚██████╔╝███████╗██║  ██║             ";
+echo "            ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝             ";
+echo "                                                                                       ";
+echo -e " ${CLEAR} ";
+echo "                                                                                       ";
+#ASCII art generated from patorjk.com
+pause
+}
+#GenesisX logo
+GenesisX_Logo(){
+  clear
+  echo "                                                                      ";
+  echo "                                                                      ";
+  echo "                                                                      ";
+  echo -e ${YELLOW}"   ██████╗ ███████╗███╗   ██╗███████╗███████╗██╗███████╗ ${RED}   ██╗  ██╗ ";
+  echo -e ${YELLOW}"  ██╔════╝ ██╔════╝████╗  ██║██╔════╝██╔════╝██║██╔════╝ ${RED}   ╚██╗██╔╝ ";
+  echo -e ${YELLOW}"  ██║  ███╗█████╗  ██╔██╗ ██║█████╗  ███████╗██║███████╗ ${RED}    ╚███╔╝  ";
+  echo -e ${YELLOW}"  ██║   ██║██╔══╝  ██║╚██╗██║██╔══╝  ╚════██║██║╚════██║ ${RED}    ██╔██╗  ";
+  echo -e ${YELLOW}"  ╚██████╔╝███████╗██║ ╚████║███████╗███████║██║███████║ ${RED}   ██╔╝ ██╗ ";
+  echo -e ${YELLOW}"   ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝╚══════╝╚═╝╚══════╝ ${RED}   ╚═╝  ╚═╝ ";
+  echo -e "                                                                   ";
+  echo -e "${GREEN}                                                           ";
+  echo -e "                          SECURITY | PRIVACY                       ";
+  echo -e "                      TRANSPARENCY | GOVERNANCE                    ";
+  echo -e "                                                                   ";
+  echo -e "                 On the Web --  https://www.genesisx.network/      ";
+  echo -e "             XGS Offical Discord -- https://discord.gg/Vbh7CgG     ";
+  echo -e "                                                                   ";
+  echo -e "${CLEAR}                                                           ";
+  echo
+  }
+
 #Main menu
 show_mainMenu() {
 	clear
@@ -594,6 +649,7 @@ echo
 precheck_install(){
   local NULLREC
   # Permission to Store/Make nullentrydev files ####
+  echo
   echo -e ${BLUE}"May this script will store a small amount data in /usr/local/nullentrydev/ ?"${CLEAR}
   echo -e ${BLUE}"This information is for version updates and later implimentation"${CLEAR}
   echo -e ${BLUE}"Zero Confidental information or Wallet keys will be stored in it"${CLEAR}
@@ -607,6 +663,7 @@ precheck_install(){
     *) echo -e "${RED}Error...${STD}" ${CLEAR} && sleep 2 && precheck_install
   esac
 }
+
 # Operating Systems Check
 first_run(){
   if [[ $(lsb_release -d) != *16.04* ]]; then
@@ -625,6 +682,7 @@ first_run(){
 #Program Core
 }
 clear
+null_logo
 first_run
 while true
 do
