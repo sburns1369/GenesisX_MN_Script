@@ -747,6 +747,8 @@ local choice
     echo -e ${YELLOW} "Masternode is still loading block Index, please wait." ${CLEAR}
     elif grep -q "Masternode successfully started" ${DPATH}XGSMN${nodeunit}.tmp; then
       echo -e ${GREEN} "Masternode Successfully Started" ${CLEAR}
+    elif grep -q "Masternode not found in the list of available masternodes. Current status: Node just started, not yet activated" ${DPATH}XGSMN${nodeunit}.tmp; then
+      echo -e ${YELLOW} "Masternode is loading blocks, Please Wait " ${CLEAR}
     elif grep -q "error: couldn't connect to server" ${DPATH}XGSMN${nodeunit}.tmp; then
       echo -e ${RED} "Masternode not running, Please Start"
       echo

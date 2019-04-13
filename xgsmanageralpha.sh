@@ -747,6 +747,8 @@ local choice
     echo -e ${YELLOW} "Masternode is still loading block Index, please wait." ${CLEAR}
     elif grep -q "Masternode successfully started" ${DPATH}XGSMN${nodeunit}.tmp; then
       echo -e ${GREEN} "Masternode Successfully Started" ${CLEAR}
+    elif grep -q "Masternode not found in the list of available masternodes. Current status: Node just started, not yet activated" ${DPATH}XGSMN${nodeunit}.tmp; then
+      echo -e ${YELLOW} "Masternode is loading blocks, Please Wait " ${CLEAR}
     elif grep -q "error: couldn't connect to server" ${DPATH}XGSMN${nodeunit}.tmp; then
       echo -e ${RED} "Masternode not running, Please Start"
       echo
@@ -834,7 +836,7 @@ first_run(){
         fi
         echo "firstrun_complete: true" /usr/local/nullentrydev/mnodes.log
     fi
-function_update #remove is placed elsewhere
+#function_update #remove is placed elsewhere
 # Checking to see if Dependencies & Software Libraries have been installed
 if grep -Fxq "dependenciesInstalled: true" /usr/local/nullentrydev/mnodes.log
 then
