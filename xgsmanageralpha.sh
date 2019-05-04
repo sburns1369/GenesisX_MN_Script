@@ -14,7 +14,7 @@ XGS=0
 XGSC=0
 #Coinname Lowercase
 COINl=genesisx
-#Coin ticket symbol
+#Coin Related names/symbol
 COIN3=XGS
 COIN3l=xgs
 COINDAEMON=genesisxd
@@ -22,7 +22,12 @@ COINDAEMONCLI=genesisx-cli
 COINCORE=.genesisx
 COINCONFIG=genesisx.conf
 COINHOME=/home/genesisx
-NEBootStrap=http://nullentry.com/chain/XGS/bootstrap.rar
+#wallet downnload and extractions commands
+DOWNLOADCOINFILES=https://github.com/genesis-x/genesis-x/files/2799605/genesisx-linux.zip
+COINFILES=genesisx-linux.zip
+DECOMPRESS=unzip
+#rocketstrap
+NEBootStrap=http://nullentry.com/chain/XGS/rocketstrap.rar
 ADDNODE0=138.68.99.126:5555
 ADDNODE1=144.202.88.53:5555
 ADDNODE2=167.114.113.239:5555
@@ -917,7 +922,6 @@ BitCoinGenX_Logo(){
   sudo apt-get -y install libevent-dev
   sudo apt-get -y install libboost-all-dev
   sudo apt-get -y install pkg-config
-  echo -e ${RED}"Press ENTER when prompted"${CLEAR}
   sudo add-apt-repository -yu ppa:bitcoin/bitcoin
   sudo apt-get update
   sudo apt-get -y install libdb4.8-dev
@@ -953,22 +957,18 @@ BitCoinGenX_Logo(){
         echo -e "${GREEN}This is going to take a few minutes, and when done will display"
         echo -e "${GREEN}information you need for your masternode.conf on your local wallet"
         echo
-        echo -e ${GREEN}"Do you have Masternode Private Keys you want to use; or would you"${CLEAR}
-        echo -e ${GREEN}"like this script to generate them for you?"${CLEAR}
+        #echo -e ${GREEN}"Do you have Masternode Private Keys you want to use; or would you"${CLEAR}
+        #echo -e ${GREEN}"like this script to generate them for you?"${CLEAR}
+        echo -e ${GREEN}"Please Enter your first Masternode Generated Key"${CLEAR}
+        echo -e ${YELLOW}
         read MNKEY1
+        echo -e ${CLEAR}
+        echo -e ${RED}"            ...Please Wait" ${CLEAR}
         function_install
         #add Regex or "are you sure"
         fi
       fi
       }
-  function_swap_space(){
-
-  }
-  #### end apps/update  install functions?
-  #>>>>>>>>>><<<<<<<<<<<<<<  make function for IP tables
-  ### Start Building IP Tables function
-  #end function_iptables
-  #>>>>>>>>>><<<<<<<<<<< break into function, swap space >>>>>>>>>>>><<<<<<<<<<<<<<<<<
   #start function_swap_space
   function_swap_space(){
   if grep -Fxq "swapInstalled: true" /usr/local/nullentrydev/mnodes.log
@@ -978,7 +978,6 @@ BitCoinGenX_Logo(){
   cd /var
   sudo touch swap.img
   sudo chmod 600 swap.img
-  echo -e ${YELLOW} "You should check out https://youtu.be/l9nh1l8ZIJQ"${CLEAR}
   sudo dd if=/dev/zero of=/var/swap.img bs=1024k count=4096
   sudo mkswap /var/swap.img
   sudo swapon /var/swap.img
@@ -993,8 +992,8 @@ BitCoinGenX_Logo(){
   cd /root/${COIN3l}
   #Download Wallet Files
   echo "Downloading latest ${COIN} binaries"
-  wget https://github.com/IchibaCoin/ICHIBA/releases/download/v1.0/IchibaCoin-.Daemon_Ubuntu-16.04.tar.gz
-  tar -xzf IchibaCoin-.Daemon_Ubuntu-16.04.tar.gz
+  wget ${DOWNLOADCOINFILES}
+  ${DECOMPRESS} ${COINFILES}
   sleep 3
   sudo mv /root/${COIN3l}/${COINDAEMON} /root/${COIN3l}/${COINDAEMONCLI} /usr/local/bin
   sudo chmod 755 -R  /usr/local/bin/${COINl}*
@@ -1015,7 +1014,7 @@ BitCoinGenX_Logo(){
   fi
   sudo touch /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
-  echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
+  echo "rpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   echo "rpcallowip=127.0.0.1" >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   echo "server=1" >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   echo "daemon=1" >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
@@ -1023,7 +1022,7 @@ BitCoinGenX_Logo(){
   echo "masternode=1" >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   ##need to build master statement for coinport
   RPCPORT=$(($COINRPCPORT+$nodeunit-1))
-  echo "rpcport=${RPCPORT}" >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
+  echo "rport=${RPCPORT}" >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   echo "listen=0" >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   if [[ $nodeunit -eq 1 ]] ; then
     echo "externalip=${MNIP1}:$COINPORT" >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
@@ -1175,19 +1174,19 @@ BitCoinGenX_Logo(){
     read -p "Enter choice " choice
     case $choice in
       1) build_first_node ;;
-      2)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/Ichiba_MN_Script/master/Ichibacoin_2pack.sh)
+      2)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_2pack.sh)
       pause ;;
-      3)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/Ichiba_MN_Script/master/Ichibacoin_3pack.sh)
+      3)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_3pack.sh)
       pause ;;
-      4)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/Ichiba_MN_Script/master/Ichibacoin_4pack.sh)
+      4)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_4pack.sh)
       pause ;;
-      5)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/Ichiba_MN_Script/master/Ichibacoin_5pack.sh)
+      5)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_5pack.sh)
       pause ;;
-      6)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/Ichiba_MN_Script/master/Ichibacoin_6pack.sh)
+      6)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_6pack.sh)
       pause ;;
-      7)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/Ichiba_MN_Script/master/Ichibacoin_7pack.sh)
+      7)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_7pack.sh)
       pause ;;
-      8)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/Ichiba_MN_Script/master/Ichibacoin_8pack.sh)
+      8)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_8pack.sh)
       pause ;;
       b) echo -e "backing out" ;;
       B) echo -e "backing out" ;;
@@ -1210,7 +1209,6 @@ BitCoinGenX_Logo(){
     echo
     echo -e "Donations can be made to multiple addresses for multiple projects"
     echo
-    echo -e "IchibaCoin address: iAAVTcoF14zQgVbUcoVASoRGDxWy3kYzRz"
     echo -e ${BLUE}" Your patronage is apprappreciated, tipping addresses"${CLEAR}
     echo -e ${BLUE}" BGX address: BayScFpFgPBiDU1XxdvozJYVzM2BQvNFgM"${CLEAR}
     echo -e ${BLUE}" BTC address: 32FzghE1yUZRdDmCkj3bJ6vJyXxUVPKY93"${CLEAR}
@@ -1322,7 +1320,7 @@ BitCoinGenX_Logo(){
   fi
   #add check before downloading
   sudo apt-get install unrar
-  unrar e bootstrap.rar /home/${COINl}1/.${COINl}
+  unrar x rocketstrap.rar /home/${COINl}1/.${COINl}
   test_pause
   rm -rf /root/${COIN3l}
   }
@@ -1343,8 +1341,8 @@ BitCoinGenX_Logo(){
   #Program Core
   clear
   null_logo
-  BitCoinGenX_Logo
-  IchibaCoin_Logo
+  #BitCoinGenX_Logo
+  GenesisX_Logo
   function_check_first_run
   function_first_nodecheck
   while true
