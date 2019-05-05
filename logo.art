@@ -1,0 +1,29 @@
+#GenesisX logo
+GenesisX_Logo(){
+  clear
+  echo "                                                                      ";
+  echo "                                                                      ";
+  echo "                                                                      ";
+  echo -e ${YELLOW}"   ██████╗ ███████╗███╗   ██╗███████╗███████╗██╗███████╗ ${RED}   ██╗  ██╗ ";
+  echo -e ${YELLOW}"  ██╔════╝ ██╔════╝████╗  ██║██╔════╝██╔════╝██║██╔════╝ ${RED}   ╚██╗██╔╝ ";
+  echo -e ${YELLOW}"  ██║  ███╗█████╗  ██╔██╗ ██║█████╗  ███████╗██║███████╗ ${RED}    ╚███╔╝  ";
+  echo -e ${YELLOW}"  ██║   ██║██╔══╝  ██║╚██╗██║██╔══╝  ╚════██║██║╚════██║ ${RED}    ██╔██╗  ";
+  echo -e ${YELLOW}"  ╚██████╔╝███████╗██║ ╚████║███████╗███████║██║███████║ ${RED}   ██╔╝ ██╗ ";
+  echo -e ${YELLOW}"   ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝╚══════╝╚═╝╚══════╝ ${RED}   ╚═╝  ╚═╝ ";
+  echo -e "                                                                   ";
+  echo -e "${GREEN}                                                           ";
+  echo -e "                          SECURITY | PRIVACY                       ";
+  echo -e "                      TRANSPARENCY | GOVERNANCE                    ";
+  echo -e "                                                                   ";
+  echo -e "                 On the Web --  https://www.genesisx.network/      ";
+  echo -e "             XGS Official Discord -- https://discord.gg/Vbh7CgG     ";
+  echo -e "                                                                   ";
+  echo
+  echo -e "${BLUE}  This Script was made by request of a community member"
+  echo -e "${BLUE}  NOT to be mistaken as part of the official BGX Project"
+  echo -e "${CLEAR}"
+  echo
+  echo
+  echo
+  pause
+  }
