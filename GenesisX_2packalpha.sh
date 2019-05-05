@@ -249,27 +249,27 @@ sleep 3
 sudo mv /root/xgs/genesisxd /root/xgs/genesisx-cli /usr/local/bin
 sudo chmod 755 -R /usr/local/bin/genesisx*
 rm -rf /root/xgs
-if [ ! -f /home/genesisx/.genesisx/genesisx.conf ]; then
+if [ ! -f /home/genesisx1/.genesisx/genesisx.conf ]; then
 echo -e "${GREEN}Configuring First GenesisX Node${CLEAR}"
-sudo mkdir /home/genesisx/.genesisx
-sudo touch /home/genesisx/.genesisx/genesisx.conf
-echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/genesisx/.genesisx/genesisx.conf
-echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/genesisx/.genesisx/genesisx.conf
-echo "rpcallowip=127.0.0.1" >> /home/genesisx/.genesisx/genesisx.conf
-echo "server=1" >> /home/genesisx/.genesisx/genesisx.conf
-echo "daemon=1" >> /home/genesisx/.genesisx/genesisx.conf
-echo "maxconnections=250" >> /home/genesisx/.genesisx/genesisx.conf
-echo "masternode=1" >> /home/genesisx/.genesisx/genesisx.conf
-echo "rpcport=19012" >> /home/genesisx/.genesisx/genesisx.conf
-echo "listen=0" >> /home/genesisx/.genesisx/genesisx.conf
-echo "externalip=[${MNIP1}]:5555" >> /home/genesisx/.genesisx/genesisx.conf
-echo "masternodeprivkey=$MNKEY" >> /home/genesisx/.genesisx/genesisx.conf
-echo "addnode=23.94.102.195" >> /home/genesisx/.genesisx/genesisx.conf
-echo "addnode=159.203.20.15" >> /home/genesisx/.genesisx/genesisx.conf
-echo "addnode=142.93.175.237" >> /home/genesisx/.genesisx/genesisx.conf
-echo "addnode=138.197.216.248" >> /home/genesisx/.genesisx/genesisx.conf
-echo "addnode=163.172.148.199" >> /home/genesisx/.genesisx/genesisx.conf
-echo "addnode=140.82.47.203" >> /home/genesisx/.genesisx/genesisx.conf
+sudo mkdir /home/genesisx1/.genesisx
+sudo touch /home/genesisx1/.genesisx/genesisx.conf
+echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/genesisx1/.genesisx/genesisx.conf
+echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/genesisx1/.genesisx/genesisx.conf
+echo "rpcallowip=127.0.0.1" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "server=1" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "daemon=1" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "maxconnections=250" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "masternode=1" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "rpcport=19012" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "listen=0" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "externalip=[${MNIP1}]:5555" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "masternodeprivkey=$MNKEY" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "addnode=23.94.102.195" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "addnode=159.203.20.15" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "addnode=142.93.175.237" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "addnode=138.197.216.248" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "addnode=163.172.148.199" >> /home/genesisx1/.genesisx/genesisx.conf
+echo "addnode=140.82.47.203" >> /home/genesisx1/.genesisx/genesisx.conf
 MN1=0
 if [[ $NULLREC = "y" ]] ; then
 echo "masterNode1 : true" >> /usr/local/nullentrydev/xgs.log
@@ -277,12 +277,12 @@ echo "walletVersion1 : 1.4.0" >> /usr/local/nullentrydev/xgs.log
 echo "scriptVersion1 : 0.99" >> /usr/local/nullentrydev/xgs.log
 fi
 else
-echo -e ${YELLOW}"Found /home/genesisx/.genesisx/genesisx.conf"${CLEAR}
+echo -e ${YELLOW}"Found /home/genesisx1/.genesisx/genesisx.conf"${CLEAR}
 echo -e ${YELLOW}"Skipping Configuration there"${CLEAR}
 fi
 echo
 echo -e ${YELLOW}"Launching First XGS Node"${CLEAR}
-genesisxd -datadir=/home/genesisx/.genesisx -daemon
+genesisxd -datadir=/home/genesisx1/.genesisx -daemon
 echo
 echo -e ${YELLOW}"Looking for a Shared Masternode Service? Check out Crypto Hash Tank" ${CLEAR}
 echo -e ${YELLOW}"Support my Project, and put your loose change to work for you!" ${CLEAR}
@@ -307,7 +307,7 @@ echo "rpcport=19013" >> /home/genesisx2/genesisx.conf
 echo "listen=0" >> /home/genesisx2/genesisx.conf
 echo "externalip=[${MNIP2}]:5555" >> /home/genesisx2/genesisx.conf
 echo "masternodeprivkey=$MNKEY2" >> /home/genesisx2/genesisx.conf
-echo "addnode=[${MNIP1}]" >> /home/genesisx/.genesisx/genesisx.conf
+echo "addnode=[${MNIP1}]" >> /home/genesisx1/.genesisx/genesisx.conf
 if [[ $NULLREC = "y" ]] ; then
 echo "masterNode2 : true" >> /usr/local/nullentrydev/xgs.log
 echo "walletVersion2 : 1.4.0" >> /usr/local/nullentrydev/xgs.log
@@ -330,22 +330,22 @@ echo -e "${YELLOW}Once complete, it will stop and copy the block chain to${CLEAR
 echo -e "${YELLOW}the other masternodes. This prevent all masternodes${CLEAR}"
 echo -e "${YELLOW}from downloading the block chain individually; taking up${CLEAR}"
 echo -e "${YELLOW}more time and resources. Current Block count will be displayed below.${CLEAR}"
-until genesisx-cli -datadir=/home/genesisx/.genesisx mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
-genesisx-cli -datadir=/home/genesisx/.genesisx getblockcount
+until genesisx-cli -datadir=/home/genesisx1/.genesisx mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
+genesisx-cli -datadir=/home/genesisx1/.genesisx getblockcount
 sleep 60
 done
 echo -e "${GREEN}Haulting and Replicating First GenesisX Node${CLEAR}"
 
-genesisx-cli -datadir=/home/genesisx/.genesisx stop
+genesisx-cli -datadir=/home/genesisx1/.genesisx stop
 sleep 10
 if [[ "$MN2" -eq "0" ]]; then
-sudo cp -r /home/genesisx/.genesisx/* /home/genesisx2/.genesisx
+sudo cp -r /home/genesisx1/.genesisx/* /home/genesisx2/.genesisx
 rm /home/genesisx2/.genesisx/genesisx.conf
 cp -r /home/genesisx2/genesisx.conf /home/genesisx2/.genesisx/genesisx.conf
 sleep 1
 fi
 echo -e ${YELLOW}"Launching First XGS Node"${CLEAR}
-genesisxd -datadir=/home/genesisx/.genesisx -daemon
+genesisxd -datadir=/home/genesisx1/.genesisx -daemon
 sleep 20
 echo -e ${YELLOW}"Launching Second XGS Node"${CLEAR}
 genesisxd -datadir=/home/genesisx2/.genesisx -daemon
@@ -354,7 +354,7 @@ echo -e ${BOLD}"All ${NODESN} XGS Nodes Launched".${CLEAR}
 echo
 
 echo -e "${GREEN}You can check the status of your XGS Masternode with"${CLEAR}
-echo -e "${YELLOW}For mn1: \"genesisx-cli -datadir=/home/genesisx/.genesisx masternode status\""${CLEAR}
+echo -e "${YELLOW}For mn1: \"genesisx-cli -datadir=/home/genesisx1/.genesisx masternode status\""${CLEAR}
 echo -e "${YELLOW}For mn2: \"genesisx-cli -datadir=/home/genesisx2/.genesisx masternode status\""${CLEAR}
 echo
 echo -e "${RED}Status 29 may take a few minutes to clear while the daemon processes the chainstate"${CLEAR}

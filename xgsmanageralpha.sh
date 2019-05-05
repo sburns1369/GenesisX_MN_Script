@@ -186,13 +186,13 @@ echo -e "  |  / ^ | ^ \\  |"
 sleep 4
 echo -e "  |/   ( | )   \\|"
 sleep 4
-echo -e "      ((   ))          ${GREEN} |It was either a rocket, or watch an error  |"
+echo -e "      ((   ))       ${GREEN} |It was either a rocket, or watch an error  |" ${CLEAR}
 sleep 4
-echo -e "     ((  :  ))         ${GREEN} | repeat itself while the wallet loads      |"
+echo -e "     ((  :  ))      ${GREEN} | repeat itself while the wallet loads      |" ${CLEAR}
 sleep 4
-echo -e "     ((   ))           ${GREEN} |  Seeing Error 28 shortly is expected.     |"
+echo -e "     ((   ))        ${GREEN} |  Seeing Error 28 shortly is expected.     |" ${CLEAR}
 sleep 4
-echo -e "       (( ))           ${GREEN} |               Relax                       |"
+echo -e "       (( ))        ${GREEN} |               Relax                       |" ${CLEAR}
 sleep 4
 echo -e "    ((  :  ))"
 sleep 4

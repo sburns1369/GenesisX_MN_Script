@@ -1,7 +1,7 @@
 #!/bin/bash
 #0.99-- NullEntryDev Script
-NODESL=Five
-NODESN=5
+NODESL=Eight
+NODESN=8
 BLUE='\033[0;96m'
 GREEN='\033[0;92m'
 RED='\033[0;91m'
@@ -67,6 +67,20 @@ else
 sudo adduser --system --home /home/genesisx5 genesisx5
 MN5=0
 fi
+if id "genesisx6" >/dev/null 2>&1; then
+echo -e ${YELLOW} "Found user genesisx6!"${CLEAR}
+MN6=1
+else
+sudo adduser --system --home /home/genesisx6 genesisx6
+MN6=0
+fi
+if id "genesisx7" >/dev/null 2>&1; then
+echo -e ${YELLOW} "Found user genesisx7!"${CLEAR}
+MN7=1
+else
+sudo adduser --system --home /home/genesisx7 genesisx7
+MN7=0
+fi
 echo
 echo
 echo
@@ -114,6 +128,20 @@ read MNKEY5
 echo
 else
 echo -e ${YELLOW}"Skipping Fifth Masternode Key"${CLEAR}
+fi
+if [[ "$MN6" -eq "0" ]]; then
+echo -e ${GREEN}"Please Enter Your Sixth Masternode Private Key:"${CLEAR}
+read MNKEY6
+echo
+else
+echo -e ${YELLOW}"Skipping Sixth Masternode Key"${CLEAR}
+fi
+if [[ "$MN7" -eq "0" ]]; then
+echo -e ${GREEN}"Please Enter Your Seventh Masternode Private Key:"${CLEAR}
+read MNKEY7
+echo
+else
+echo -e ${YELLOW}"Skipping Seventh Masternode Key"${CLEAR}
 fi
 cd ~
 if [[ $NULLREC = "y" ]] ; then
@@ -178,6 +206,10 @@ echo -e ${GREEN}"IP for Masternode 4"${CLEAR}
 read MNIP4
 echo -e ${GREEN}"IP for Masternode 5"${CLEAR}
 read MNIP5
+echo -e ${GREEN}"IP for Masternode 6"${CLEAR}
+read MNIP6
+echo -e ${GREEN}"IP for Masternode 7"${CLEAR}
+read MNIP7
 else
 regex='^([0-9a-fA-F]{0,4}:){1,7}[0-9a-fA-F]{0,4}$'
 FINDIP=$(hostname -I | cut -f2 -d' '| cut -f1-7 -d:)
@@ -215,6 +247,8 @@ MNIP2=$(sed -n '2p' < ip.tmp)
 MNIP3=$(sed -n '3p' < ip.tmp)
 MNIP4=$(sed -n '4p' < ip.tmp)
 MNIP5=$(sed -n '5p' < ip.tmp)
+MNIP6=$(sed -n '6p' < ip.tmp)
+MNIP7=$(sed -n '7p' < ip.tmp)
 rm -rf ip.tmp
 fi
 if grep -Fxq "swapInstalled: true" /usr/local/nullentrydev/mnodes.log
@@ -472,6 +506,72 @@ else
 echo -e ${YELLOW}"Found /home/genesisx5/.genesisx/genesisx.conf"${CLEAR}
 echo -e ${YELLOW}"Skipping Configuration for Fifth Node"${CLEAR}
 fi
+if [ ! -f /home/genesisx6/.genesisx/genesisx.conf ]; then
+if [ ! -f /home/genesisx6/genesisx.conf ]; then
+echo -e "${GREEN}Sixth GenesisX Node Configuration Not Found....${CLEAR}"
+echo -e "${YELLOW}Configuring Sixth GenesisX Node${CLEAR}"
+sudo mkdir /home/genesisx6/.genesisx
+sudo touch /home/genesisx6/genesisx.conf
+echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/genesisx6/genesisx.conf
+echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/genesisx6/genesisx.conf
+echo "rpcallowip=127.0.0.1" >> /home/genesisx6/genesisx.conf
+echo "server=1" >> /home/genesisx6/genesisx.conf
+echo "daemon=1" >> /home/genesisx6/genesisx.conf
+echo "maxconnections=250" >> /home/genesisx6/genesisx.conf
+echo "masternode=1" >> /home/genesisx6/genesisx.conf
+echo "rpcport=19018" >> /home/genesisx6/genesisx.conf
+echo "listen=0" >> /home/genesisx6/genesisx.conf
+echo "externalip=[${MNIP6}]:5555" >> /home/genesisx6/genesisx.conf
+echo "masternodeprivkey=$MNKEY6" >> /home/genesisx6/genesisx.conf
+if [[ $NULLREC = "y" ]] ; then
+echo "masterNode6 : true" >> /usr/local/nullentrydev/xgs.log
+echo "walletVersion6 : 1.4.0" >> /usr/local/nullentrydev/xgs.log
+echo "scriptVersion6 : 0.99" >> /usr/local/nullentrydev/xgs.log
+fi
+else
+echo
+echo -e ${YELLOW}"Found /home/genesisx6/genesisx.conf"${CLEAR}
+echo -e ${YELLOW}"Skipping Pre-stage for Sixth Node "${CLEAR}
+MN6=0
+fi
+else
+echo -e ${YELLOW}"Found /home/genesisx6/.genesisx/genesisx.conf"${CLEAR}
+echo -e ${YELLOW}"Skipping Configuration for Sixth Node"${CLEAR}
+fi
+echo
+if [ ! -f /home/genesisx7/.genesisx/genesisx.conf ]; then
+if [ ! -f /home/genesisx7/genesisx.conf ]; then
+echo -e "${GREEN}Seventh GenesisX Node Configuration Not Found....${CLEAR}"
+echo -e "${YELLOW}Configuring Seventh GenesisX Node${CLEAR}"
+sudo mkdir /home/genesisx7/.genesisx
+sudo touch /home/genesisx7/genesisx.conf
+echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/genesisx7/genesisx.conf
+echo "rpcpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/genesisx7/genesisx.conf
+echo "rpcallowip=127.0.0.1" >> /home/genesisx7/genesisx.conf
+echo "server=1" >> /home/genesisx7/genesisx.conf
+echo "daemon=1" >> /home/genesisx7/genesisx.conf
+echo "maxconnections=250" >> /home/genesisx7/genesisx.conf
+echo "masternode=1" >> /home/genesisx7/genesisx.conf
+echo "rpcport=19019" >> /home/genesisx7/genesisx.conf
+echo "listen=0" >> /home/genesisx7/genesisx.conf
+echo "externalip=[${MNIP7}]:5555" >> /home/genesisx7/genesisx.conf
+echo "masternodeprivkey=$MNKEY7" >> /home/genesisx7/genesisx.conf
+if [[ $NULLREC = "y" ]] ; then
+echo "masterNode7 : true" >> /usr/local/nullentrydev/xgs.log
+echo "walletVersion7 : 1.4.0" >> /usr/local/nullentrydev/xgs.log
+echo "scriptVersion7 : 0.99" >> /usr/local/nullentrydev/xgs.log
+fi
+else
+echo
+echo -e ${YELLOW}"Found /home/genesisx7/genesisx.conf"${CLEAR}
+echo -e ${YELLOW}"Skipping Pre-stage for Seventh Node "${CLEAR}
+MN7=0
+fi
+else
+echo -e ${YELLOW}"Found /home/genesisx7/.genesisx/genesisx.conf"${CLEAR}
+echo -e ${YELLOW}"Skipping Configuration for Seventh Node"${CLEAR}
+fi
+echo
 echo -e "${RED}This process can take a while!${CLEAR}"
 echo -e "${YELLOW}Waiting on First Masternode Block Chain to Synchronize${CLEAR}"
 echo -e "${YELLOW}Once complete, it will stop and copy the block chain to${CLEAR}"
@@ -510,6 +610,18 @@ rm /home/genesisx5/.genesisx/genesisx.conf
 cp -r /home/genesisx5/genesisx.conf /home/genesisx5/.genesisx/genesisx.conf
 sleep 1
 fi
+if [[ "$MN6" -eq "0" ]]; then
+sudo cp -r /home/genesisx1/.genesisx/* /home/genesisx6/.genesisx
+rm /home/genesisx6/.genesisx/genesisx.conf
+cp -r /home/genesisx6/genesisx.conf /home/genesisx6/.genesisx/genesisx.conf
+sleep 1
+fi
+if [[ "$MN7" -eq "0" ]]; then
+sudo cp -r /home/genesisx1/.genesisx/* /home/genesisx7/.genesisx
+rm /home/genesisx7/.genesisx/genesisx.conf
+cp -r /home/genesisx7/genesisx.conf /home/genesisx7/.genesisx/genesisx.conf
+sleep 1
+fi
 echo -e ${YELLOW}"Launching First XGS Node"${CLEAR}
 genesisxd -datadir=/home/genesisx1/.genesisx -daemon
 sleep 20
@@ -525,6 +637,12 @@ sleep 20
 echo -e ${YELLOW}"Launching Fifth XGS Node"${CLEAR}
 genesisxd -datadir=/home/genesisx5/.genesisx -daemon
 sleep 20
+echo -e ${YELLOW}"Launching Sixth XGS Node"${CLEAR}
+genesisxd -datadir=/home/genesisx6/.genesisx -daemon
+sleep 20
+echo -e ${YELLOW}"Launching Seventh XGS Node"${CLEAR}
+genesisxd -datadir=/home/genesisx7/.genesisx -daemon
+sleep 20
 echo -e ${BOLD}"All ${NODESN} XGS Nodes Launched".${CLEAR}
 echo
 
@@ -534,6 +652,8 @@ echo -e "${YELLOW}For mn2: \"genesisx-cli -datadir=/home/genesisx2/.genesisx mas
 echo -e "${YELLOW}For mn3: \"genesisx-cli -datadir=/home/genesisx3/.genesisx masternode status\""${CLEAR}
 echo -e "${YELLOW}For mn4: \"genesisx-cli -datadir=/home/genesisx4/.genesisx masternode status\""${CLEAR}
 echo -e "${YELLOW}For mn5: \"genesisx-cli -datadir=/home/genesisx5/.genesisx masternode status\""${CLEAR}
+echo -e "${YELLOW}For mn6: \"genesisx-cli -datadir=/home/genesisx6/.genesisx masternode status\""${CLEAR}
+echo -e "${YELLOW}For mn7: \"genesisx-cli -datadir=/home/genesisx7/.genesisx masternode status\""${CLEAR}
 echo
 echo -e "${RED}Status 29 may take a few minutes to clear while the daemon processes the chainstate"${CLEAR}
 echo -e "${GREEN}The data below needs to be in your local masternode configuration file:${CLEAR}"
@@ -542,6 +662,8 @@ echo -e "${BOLD} Masternode - \#2 IP: [${MNIP2}]:5555${CLEAR}"
 echo -e "${BOLD} Masternode - \#3 IP: [${MNIP3}]:5555${CLEAR}"
 echo -e "${BOLD} Masternode - \#4 IP: [${MNIP4}]:5555${CLEAR}"
 echo -e "${BOLD} Masternode - \#5 IP: [${MNIP5}]:5555${CLEAR}"
+echo -e "${BOLD} Masternode - \#6 IP: [${MNIP6}]:5555${CLEAR}"
+echo -e "${BOLD} Masternode - \#7 IP: [${MNIP7}]:5555${CLEAR}"
 fi
 echo -e ${BLUE}" Your patronage is appreciated, tipping addresses"${CLEAR}
 echo -e ${BLUE}" GenesisX address: GcToAa57WXPsVwXB9LKvui215AC3bsvneA"${CLEAR}
