@@ -1070,12 +1070,12 @@ echo -e "         ."
   echo -e "${GREEN}Configuring ${COIN} Masternode #${nodeunit} ${CLEAR}"
   if [ ! -d /home/${COINl}${nodeunit} ]; then
       sudo mkdir /home/${COINl}${nodeunit}
-      test_pause
+      #test_pause
       echo test mkdir /home/${COINl}${nodeunit}
   fi
   if [ ! -d /home/${COINl}${nodeunit}/.${COINl} ]; then
       sudo mkdir /home/${COINl}${nodeunit}/.${COINl}
-      test_pause
+      #test_pause
       echo test mkdir /home/${COINl}${nodeunit}/.${COINl}
   fi
   sudo touch /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
@@ -1157,7 +1157,7 @@ echo -e "         ."
     echo "masterNode1 : true" >> /usr/local/nullentrydev/${COIN3l}.log
     echo "walletVersion1 : $COINVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
     echo "scriptVersion1 : $SCRIPTVERSION" >> /usr/local/nullentrydev/${COIN3l}.log
-    test_pause
+    #test_pause
   }
   ##End Launch first node
   ##Start Waiting for Launch of First Nodes
@@ -1178,7 +1178,7 @@ echo -e "         ."
     ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} getblockcount
     sleep 5
   done
-  test_pause
+  #test_pause
   }
   ##End launch of first nodes
   ##Start of replicate nodes
@@ -1387,7 +1387,7 @@ echo -e "         ."
   #add check before downloading
   sudo apt-get install unrar
   unrar x rocketstrap.rar /home/${COINl}1/.${COINl}
-  test_pause
+  #test_pause
   rm -rf /root/${COIN3l}
   }
   # installation Core
