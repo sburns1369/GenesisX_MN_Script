@@ -139,8 +139,30 @@ BitCoinGenX_Logo(){
   pause
   }
 rocketstrap_delay(){
-echo
 clear
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
+echo
 echo
 echo
 sleep 4
@@ -193,8 +215,6 @@ sleep 4
 echo -e "     ((   ))        ${GREEN} |  Seeing Error 28 shortly is expected.     |" ${CLEAR}
 sleep 4
 echo -e "       (( ))        ${GREEN} |               Relax                       |" ${CLEAR}
-sleep 4
-echo -e "    ((  :  ))"
 sleep 4
 echo -e "        ( )"
 sleep 4
