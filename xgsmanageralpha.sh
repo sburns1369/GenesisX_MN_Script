@@ -1333,6 +1333,7 @@ BitCoinGenX_Logo(){
   download_coinfiles
   function_bootstrap
   function_build_IP
+  nodeunit=1
   function_build_node_configuration
   launch_first_node
   wait_first_node_launch
