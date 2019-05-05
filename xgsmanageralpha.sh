@@ -138,6 +138,72 @@ BitCoinGenX_Logo(){
   echo -e "${BLUE}  NOT to be mistaken as part of the official BGX Project${CLEAR}"
   pause
   }
+rocketstrap_delay(){
+echo
+clear
+echo
+echo
+wait 3
+echo -e "         ! "
+wait 3
+echo -e "         !"
+wait 3
+echo -e "         ^"
+wait 3
+echo -e "        / \\ "
+wait 3
+echo -e "       /___\\ "
+wait 3
+echo -e "      |=   =|"
+wait 3
+echo -e "      |  G  |"
+wait 3
+echo -e "      |  E  |"
+wait 3
+echo -e "      |  N  |"
+wait 3
+echo -e "      |  E  |"
+wait 3
+echo -e "      |  S  |"
+wait 3
+echo -e "      |  I  |"
+wait 3
+echo -e "      |  X  |"
+wait 3
+echo -e "      |     |"
+wait 3
+echo -e "      |     |"
+wait 3
+echo -e "     /|##!##|\\"
+wait 3
+echo -e "    / |##!##| \\"
+wait 3
+echo -e "   /  |##!##|  \\"
+wait 3
+echo -e "  | /  ( | )  \\ |"
+wait 3
+echo -e "  |  / ^ | ^ \\  |"
+wait 3
+echo -e "  |/   ( | )   \\|"
+wait 3
+echo -e "      ((   ))                -It was either a rocket, or watch an error"
+wait 3
+echo -e "     ((  :  ))                repeat itself while the wallet loads"
+wait 3
+echo -e "     ((   ))                Seeing Error 28 shortly is expected."
+wait 3
+echo -e "       (( ))                            Relax"
+wait 3
+echo -e "    ((  :  ))"
+wait 3
+echo -e "        ( )"
+wait 3
+echo -e "         ."
+wait 3
+echo -e "         ."
+wait 3
+echo -e "         ."
+}
   ### Start - First Run Configuration
   function_check_first_run(){
   local NULLREC
@@ -1013,8 +1079,8 @@ BitCoinGenX_Logo(){
       echo test mkdir /home/${COINl}${nodeunit}/.${COINl}
   fi
   sudo touch /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
-  echo "rpcuser=user"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
-  echo "rpassword=pass"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
+  echo "rpcuser=u3er"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
+  echo "rpcpassword=pa55"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   echo "rpcallowip=127.0.0.1" >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   echo "server=1" >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   echo "daemon=1" >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
@@ -1108,7 +1174,7 @@ BitCoinGenX_Logo(){
   #node 1 sync check
   #select proper isblocked sync'd syntax
   #until ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
-  until ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep -m 1 'IsBlockchainSynced": true'; do
+  until ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
     ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} getblockcount
     sleep 5
   done
