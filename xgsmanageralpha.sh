@@ -143,65 +143,65 @@ echo
 clear
 echo
 echo
-wait 3
+sleep 4
 echo -e "         ! "
-wait 3
+sleep 4
 echo -e "         !"
-wait 3
+sleep 4
 echo -e "         ^"
-wait 3
+sleep 4
 echo -e "        / \\ "
-wait 3
+sleep 4
 echo -e "       /___\\ "
-wait 3
+sleep 4
 echo -e "      |=   =|"
-wait 3
+sleep 4
 echo -e "      |  G  |"
-wait 3
+sleep 4
 echo -e "      |  E  |"
-wait 3
+sleep 4
 echo -e "      |  N  |"
-wait 3
+sleep 4
 echo -e "      |  E  |"
-wait 3
+sleep 4
 echo -e "      |  S  |"
-wait 3
+sleep 4
 echo -e "      |  I  |"
-wait 3
+sleep 4
 echo -e "      |  X  |"
-wait 3
+sleep 4
 echo -e "      |     |"
-wait 3
+sleep 4
 echo -e "      |     |"
-wait 3
+sleep 4
 echo -e "     /|##!##|\\"
-wait 3
+sleep 4
 echo -e "    / |##!##| \\"
-wait 3
+sleep 4
 echo -e "   /  |##!##|  \\"
-wait 3
+sleep 4
 echo -e "  | /  ( | )  \\ |"
-wait 3
+sleep 4
 echo -e "  |  / ^ | ^ \\  |"
-wait 3
+sleep 4
 echo -e "  |/   ( | )   \\|"
-wait 3
-echo -e "      ((   ))                -It was either a rocket, or watch an error"
-wait 3
-echo -e "     ((  :  ))                repeat itself while the wallet loads"
-wait 3
-echo -e "     ((   ))                Seeing Error 28 shortly is expected."
-wait 3
-echo -e "       (( ))                            Relax"
-wait 3
+sleep 4
+echo -e "      ((   ))          ${GREEN} |It was either a rocket, or watch an error  |"
+sleep 4
+echo -e "     ((  :  ))         ${GREEN} | repeat itself while the wallet loads      |"
+sleep 4
+echo -e "     ((   ))           ${GREEN} |  Seeing Error 28 shortly is expected.     |"
+sleep 4
+echo -e "       (( ))           ${GREEN} |               Relax                       |"
+sleep 4
 echo -e "    ((  :  ))"
-wait 3
+sleep 4
 echo -e "        ( )"
-wait 3
+sleep 4
 echo -e "         ."
-wait 3
+sleep 4
 echo -e "         ."
-wait 3
+sleep 4
 echo -e "         ."
 }
   ### Start - First Run Configuration
@@ -1375,7 +1375,7 @@ echo -e "         ."
   fi
   cd /root/${COIN3l}
   echo "Attempting to get Bootstrap, please wait"
-  pause
+  #test_pause
   wget ${NEBootStrap}
   sleep 1
   if [ ! -d ${COINl}1/.${COINl} ]; then
