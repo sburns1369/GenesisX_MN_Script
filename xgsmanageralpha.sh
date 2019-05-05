@@ -1240,19 +1240,19 @@ echo -e "         ."
     read -p "Enter choice " choice
     case $choice in
       1) build_first_node ;;
-      2)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_2pack.sh)
+      2)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_2packalpha.sh)
       pause ;;
-      3)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_3pack.sh)
+      3)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_3packalpha.sh)
       pause ;;
-      4)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_4pack.sh)
+      4)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_4packalpha.sh)
       pause ;;
-      5)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_5pack.sh)
+      5)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_5packalpha.sh)
       pause ;;
-      6)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_6pack.sh)
+      6)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_6packalpha.sh)
       pause ;;
-      7)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_7pack.sh)
+      7)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_7packalpha.sh)
       pause ;;
-      8)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_8pack.sh)
+      8)bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/GenesisX_8packalpha.sh)
       pause ;;
       b) echo -e "backing out" ;;
       B) echo -e "backing out" ;;
