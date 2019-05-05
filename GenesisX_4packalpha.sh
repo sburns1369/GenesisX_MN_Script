@@ -32,11 +32,11 @@ echo -e ${YELLOW}"If you don't know the answer, hit n for no"${CLEAR}
 echo -e ${YELLOW}"If you have custom IPs hit y for yes"${CLEAR}
 read customIP
 echo "Creating ${NODESN} GenesisX system user(s) with no-login access:"
-if id "genesisx" >/dev/null 2>&1; then
+if id "genesisx1" >/dev/null 2>&1; then
 echo "user exists"
 MN1=1
 else
-sudo adduser --system --home /home/genesisx genesisx
+sudo adduser --system --home /home/genesisx1 genesisx1
 MN1=0
 fi
 if id "genesisx2" >/dev/null 2>&1; then
