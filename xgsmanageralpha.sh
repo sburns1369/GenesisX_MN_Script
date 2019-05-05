@@ -1402,6 +1402,7 @@ echo -e "         ."
   nodeunit=1
   function_build_node_configuration
   launch_first_node
+  rocketstrap_delay
   wait_first_node_launch
   }
   #End installation Core
