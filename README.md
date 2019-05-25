@@ -1,6 +1,6 @@
 # BitcoinGenX_MN_Script
 
-1 to 12 Masternode Installation Script for BitcoinGenX
+1 to 12 Masternode Installation Script for GenesisX
 
 This script is for use on fresh installations of Ubuntu 16.04 x64 only; or Ubuntu 16.04 x64 installations that were installed by other Sburns/NullEntry (Github = https://github.com/sburns1369).  All scripts where tested on a Vultr VPS
 
@@ -9,7 +9,7 @@ Shameless Referral link for VPS = https://www.vultr.com/?ref=7846384 = All insta
 *********  Quick Start - Experienced Users ***************
 Copy and paste into your VPS:
 
-bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/BitcoinGenX_MN_Script/master/bgx.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/bgx.sh)
 
 *********  {Incomplete Directions - Need to update} - Experienced Users ***************
 
@@ -24,7 +24,7 @@ Paste the address in the fresh Notepad
 
 ***Repeat that process 4 times, if making 4 masternodes, I suggest MN2, MN3, MN4 for logical reasons as label) ***
 
-Now send the collateral of exactly 1000 coins, do not include transmission cost in the send amount
+Now send the collateral of exactly 5000 coins, do not include transmission cost in the send amount
   -it will be automatically deducted.
 Wait for each transaction to have 6 confirmations.
   -you can hold your cursor over the transactions under "transactions" to see number of confirms
@@ -37,15 +37,9 @@ Save these with a notepad
 Connect to your Linux VPS as root
 
 Copy and Paste the command below
-bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/BitcoinGenX_MN_Script/master/bgx.sh)
+bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/master/bgx.sh)
 
 
 
 Need help? Have a suggestion? Have a request?
 Find Sburns1369#1584 on Discord - https://discord.gg/YhJ8v3g
-Website will hopefully by up early March 2019
-
-Tips are always appreciated
-BitcoinGenX address: BoEsUmcS3D9gVmdxvj7Che4wD1SAHa2zG9
-LTC address: MUdDdVr4Az1dVw47uC4srJ31Ksi5SNkC7H
-BTC address: 32FzghE1yUZRdDmCkj3bJ6vJyXxUVPKY93
