@@ -59,13 +59,13 @@ echo -e "      |${BLUE}  I ${CLEAR} |"
 sleep 3
 echo -e "      |${BLUE}  S ${CLEAR} |"
 sleep 3
-echo -e "      |${BLUE}   ${CLEAR} |"
+echo -e "      |${BLUE}    ${CLEAR} |"
 sleep 3
 echo -e "      |${BLUE}  X ${CLEAR} |"
 sleep 3
-echo -e "      |${BLUE}   ${CLEAR} |"
+echo -e "      |${BLUE}    ${CLEAR} |"
 sleep 3
-echo -e "      |${BLUE}   ${CLEAR} |"
+echo -e "      |${BLUE}    ${CLEAR} |"
 sleep 3
 echo -e "      |     |"
 sleep 3
