@@ -1480,7 +1480,8 @@ Function_Build_Masternode_Key_Table(){
     sleep 20
     until ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
       ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} getblockcount
-    sleep 5
+      sleep 30
+    done
     sudo touch ${DPATH}${COIN3l}mnkey.tbl
     echo \#If editing IP Table list them below.  Starting from masternode 1 to 10 > ${DPATH}${COIN3l}mnkey.tbl
     echo \Masternode needs to be rebuilt in order for these to take effect >> ${DPATH}${COIN3l}mnkey.tbl
