@@ -1,4 +1,4 @@
-# BitcoinGenX_MN_Script
+# GenesisX_MN_Script
 
 1 to 12 Masternode Installation Script for GenesisX
 
