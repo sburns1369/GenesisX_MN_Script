@@ -119,7 +119,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/
   case $choice in
     1) Find_All_Masternodes ;;
     2) function_masternode_upgrade ;;
-    3) Function_Manager_WINMasternodes;;
+    3) Function_Manager_XGSMasternodes;;
     4) Function_Display_MasternodeConf;;
     5) function_Donations ;;
     6) Function_Manager_Maintenance_Menu ;;
@@ -167,8 +167,8 @@ bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/
   pause
   }
 
-  # Function_Manager_WINMasternodes menu
-  Function_Manager_WINMasternodes(){
+  # Function_Manager_XGSMasternodes menu
+  Function_Manager_XGSMasternodes(){
   clear
   echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
   echo "        Displaying Masternode Status"
@@ -180,11 +180,11 @@ bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/
   echo -e "5 -  Re-Index Masternode(s)"
   echo -e "B-   Back - Previous Menu"
   echo -e "X -  Exit"
-  Function_Read_Manager_WINMasternodes
+  Function_Read_Manager_XGSMasternodes
   }
 
-  # manager_WINMasternodes read options
-  Function_Read_Manager_WINMasternodes(){
+  # manager_XGSMasternodes read options
+  Function_Read_Manager_XGSMasternodes(){
   local choice
   read -p "Enter choice " choice
   case $choice in
@@ -968,20 +968,20 @@ esac
   local choice
   if [ -d /home/${COINl}${nodeunit} ]; then
     if [ -z ${nodeunit} ]; then
-    echo -e ${GREEN}"Found WIN-Oldnode Installation Found - /home/${COINl}" ${CLEAR}
+    echo -e ${GREEN}"Found XGS-Oldnode Installation Found - /home/${COINl}" ${CLEAR}
   else
-    echo -e ${GREEN}"Found WIN-${nodeunit} Installation Found - /home/${COINl}${nodeunit}" ${CLEAR}
+    echo -e ${GREEN}"Found XGS-${nodeunit} Installation Found - /home/${COINl}${nodeunit}" ${CLEAR}
   fi
-  ${COINDAEMONCLI} -datadir=${COINHOME}${nodeunit}/${COINCORE} masternode status &> ${DPATH}WINMN${nodeunit}.tmp
-    if grep -q "Hot node, waiting for remote activation" ${DPATH}WINMN${nodeunit}.tmp; then
+  ${COINDAEMONCLI} -datadir=${COINHOME}${nodeunit}/${COINCORE} masternode status &> ${DPATH}XGSMN${nodeunit}.tmp
+    if grep -q "Hot node, waiting for remote activation" ${DPATH}XGSMN${nodeunit}.tmp; then
       echo -e ${YELLOW} "Masternode Ready, waiting for activation from Wallet" ${CLEAR}
-    elif grep -q "Loading block index..." ${DPATH}WINMN${nodeunit}.tmp; then
+    elif grep -q "Loading block index..." ${DPATH}XGSMN${nodeunit}.tmp; then
     echo -e ${YELLOW} "Masternode is still loading block Index, please wait." ${CLEAR}
-    elif grep -q "Masternode successfully started" ${DPATH}WINMN${nodeunit}.tmp; then
+    elif grep -q "Masternode successfully started" ${DPATH}XGSMN${nodeunit}.tmp; then
       echo -e ${GREEN} "Masternode Successfully Started" ${CLEAR}
-    elif grep -q "Masternode not found in the list of available masternodes. Current status: Node just started, not yet activated" ${DPATH}WINMN${nodeunit}.tmp; then
+    elif grep -q "Masternode not found in the list of available masternodes. Current status: Node just started, not yet activated" ${DPATH}XGSMN${nodeunit}.tmp; then
       echo -e ${YELLOW} "Masternode is loading blocks, Please Wait " ${CLEAR}
-    elif grep -q "error: couldn't connect to server" ${DPATH}WINMN${nodeunit}.tmp; then
+    elif grep -q "error: couldn't connect to server" ${DPATH}XGSMN${nodeunit}.tmp; then
       echo -e ${RED} "Masternode not running, Please Start"
       echo
       echo -e ${GREEN} "Would you like to attempt to start the Masternode? (Y/N) "
