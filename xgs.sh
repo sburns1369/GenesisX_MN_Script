@@ -1141,7 +1141,7 @@ esac
   if [ ! -d /home/${COINl}${nodeunit} ]; then
       sudo mkdir /home/${COINl}${nodeunit}
       sleep 3
-     [ ! -d /home/${COINl}${nodeunit}/.${COINl} ]; then
+    elif [ ! -d /home/${COINl}${nodeunit}/.${COINl} ]; then
       sudo mkdir /home/${COINl}${nodeunit}/.${COINl}
     fi
 }
