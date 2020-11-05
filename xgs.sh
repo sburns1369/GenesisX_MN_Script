@@ -1141,7 +1141,7 @@ esac
   if [ ! -d /home/${COINl}${nodeunit} ]; then
       sudo mkdir /home/${COINl}${nodeunit}
       sleep 3
-    # [ ! -d /home/${COINl}${nodeunit}/.${COINl} ]; then
+     [ ! -d /home/${COINl}${nodeunit}/.${COINl} ]; then
       sudo mkdir /home/${COINl}${nodeunit}/.${COINl}
     fi
 }
@@ -1151,6 +1151,7 @@ esac
     sudo mkdir /home/${COINl}${nodeunit}/.${COINl}
   if [ ! -f /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG} ]; then
   sudo touch /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
+  fi
   echo "rpcuser=u3er"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   echo "rpcpassword=pa55"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   echo "rpcallowip=127.0.0.1" >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
