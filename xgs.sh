@@ -1020,10 +1020,10 @@ esac
 
   # Operating Systems Check
   function_first_run(){
-        if [[ $(lsb_release -d) != *16.04* ]]; then
-          echo -e ${RED}"The operating system is not Ubuntu 16.04. You must be running on ubuntu 16.04."${CLEAR}
-          exit 1
-        fi
+        #if [[ $(lsb_release -d) != *16.04* ]]; then
+        #  echo -e ${RED}"The operating system is not Ubuntu 16.04. You must be running on ubuntu 16.04."${CLEAR}
+        #  exit 1
+        #fi
         if [ ! -d /usr/local/nullentrydev/ ]; then
           echo "Making /usr/local/nullentrydev "
           sudo mkdir /usr/local/nullentrydev
