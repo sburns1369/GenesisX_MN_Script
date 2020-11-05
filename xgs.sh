@@ -1020,10 +1020,10 @@ esac
 
   # Operating Systems Check
   function_first_run(){
-        #if [[ $(lsb_release -d) != *16.04* ]]; then
-        #  echo -e ${RED}"The operating system is not Ubuntu 16.04. You must be running on ubuntu 16.04."${CLEAR}
-        #  exit 1
-        #fi
+        if [[ $(lsb_release -d) != *16.04* ]]; then
+          echo -e ${RED}"The operating system is not Ubuntu 16.04. You must be running on ubuntu 16.04."${CLEAR}
+          exit 1
+        fi
         if [ ! -d /usr/local/nullentrydev/ ]; then
           echo "Making /usr/local/nullentrydev "
           sudo mkdir /usr/local/nullentrydev
@@ -1140,12 +1140,15 @@ esac
   echo -e "${GREEN}Configuring ${COIN} Masternode #${nodeunit} ${CLEAR}"
   if [ ! -d /home/${COINl}${nodeunit} ]; then
       sudo mkdir /home/${COINl}${nodeunit}
-    ## [ ! -d /home/${COINl}${nodeunit}/.${COINl} ]; then
+      sleep 3
+    # [ ! -d /home/${COINl}${nodeunit}/.${COINl} ]; then
       sudo mkdir /home/${COINl}${nodeunit}/.${COINl}
     fi
 }
   Function_Build_Node_Configuration(){
   Function_Build_Node_Directories
+  if [ ! -d /home/${COINl}${nodeunit}/.${COINl} ]; then
+    sudo mkdir /home/${COINl}${nodeunit}/.${COINl}
   if [ ! -f /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG} ]; then
   sudo touch /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
   echo "rpcuser=u3er"`shuf -i 100000-9999999 -n 1` >> /home/${COINl}${nodeunit}/.${COINl}/${COINCONFIG}
