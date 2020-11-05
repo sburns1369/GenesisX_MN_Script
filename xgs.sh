@@ -1140,7 +1140,7 @@ esac
   echo -e "${GREEN}Configuring ${COIN} Masternode #${nodeunit} ${CLEAR}"
   if [ ! -d /home/${COINl}${nodeunit} ]; then
       sudo mkdir /home/${COINl}${nodeunit}
-    elif [ ! -d /home/${COINl}${nodeunit}/.${COINl} ]; then
+    ## [ ! -d /home/${COINl}${nodeunit}/.${COINl} ]; then
       sudo mkdir /home/${COINl}${nodeunit}/.${COINl}
     fi
 }
