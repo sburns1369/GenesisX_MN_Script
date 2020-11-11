@@ -1540,8 +1540,11 @@ Function_Read_Masternode_Key_Table(){
   echo "Found /home/${COINl}1/.${COINl} "
   fi
   sudo apt-get -y install unrar
+# unzip x  rocketstrap.zip /home/${COINl}1/.${COINl}
   unrar x rocketstrap.rar /home/${COINl}1/.${COINl}
+#
   rm -rf /root/${COIN3l}
+
   }
 
   Function_Display_MasternodeConf(){
