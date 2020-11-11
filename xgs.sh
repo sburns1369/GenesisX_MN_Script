@@ -1198,7 +1198,7 @@ esac
   wget ${DOWNLOADCOINFILES}
   ${DECOMPRESS} ${COINFILES}
   sleep 3
-  sudo mv /root/${COIN3l}/Linux/${COINDAEMON} /root/${COIN3l}/Linux/${COINDAEMONCLI} /usr/local/bin
+  sudo mv /root/${COIN3l}/${COINDAEMON} /root/${COIN3l}/${COINDAEMONCLI} /usr/local/bin
   sudo chmod 755 -R  /usr/local/bin/genesisx*
   #rm -rf /root/${COIN3l}
   }
