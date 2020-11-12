@@ -184,7 +184,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/
 ##Inject Point
 while true ; do
   echo "Working..."
-result=$(${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep ! 'error: {"code":-28,"message":"Loading block index..."}')
+result=$(${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep -m 1 'error: {"code":-28,"message":"Loading block index...')
 echo "inject test point"
 ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status
 echo "DEBUG: Result found is $result"
@@ -194,8 +194,6 @@ if [ -z "$result" ] ; then
 fi
 sleep 15
 done
-  until ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep ! '"IsBlockchainSynced" : true,'; do
-
   if [ -d /home/${COINl}${nodeunit} ]; then
     echo -e ${GREEN}"Stopping Masternode ${nodeunit}" ${YELLOW}
     ${COINDAEMONCLI} -datadir=${COINHOME}${nodeunit}/${COINCORE} stop
