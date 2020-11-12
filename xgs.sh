@@ -1374,10 +1374,11 @@ Function_Glances(){
   #node 1 sync check
   #select proper isblocked sync'd syntax
   #until ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep -m 1 'IsBlockchainSynced" : true'; do
-  until ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep -m 1 'IsBlockchainSynced": true'; do
+  until ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep -m 1 '"IsBlockchainSynced" : true,'; do
     ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} getblockcount
     sleep 5
   done
+  #mark1
   #Test_Pause
   }
   ##End launch of first nodes
@@ -1661,8 +1662,8 @@ Function_Read_Masternode_Key_Table(){
   echo "Found /home/${COINl}1/.${COINl} "
   fi
   #add check before downloading
-  sudo apt-get -y install unrar
-  unrar x rocketstrap.rar /home/${COINl}1/.${COINl}
+  #sudo apt-get -y install unrar
+  unzip x rocketstrap.rar /home/${COINl}1/.${COINl}
 #add hash Check
 #compare hash
   #Test_Pause
