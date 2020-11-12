@@ -194,8 +194,8 @@ bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/
 #fi
 #sleep 15
 #done
-until ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep -v 1 'code":-28,"message":"Loading block index...'; do
-  echo load....
+until ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep -m 1 '"IsBlockchainSynced" : true,'; do
+  echo "blockchain is still loading...."
   sleep 15
 done
   if [ -d /home/${COINl}${nodeunit} ]; then
