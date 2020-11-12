@@ -182,7 +182,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/sburns1369/GenesisX_MN_Script/
   Function_Stop_Masternode(){
     echo
 ##Inject Point
-while true ; do
+while false ; do
   echo "Working..."
 result=$(${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep -m 1 'error: {"code":-28,"message":"Loading block index...')
 echo "inject test point"
