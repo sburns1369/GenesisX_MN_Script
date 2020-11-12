@@ -46,7 +46,7 @@ DOWNLOADCOINFILES=https://github.com/genesis-x/genesis-x/files/2799605/genesisx-
 COINFILES=genesisx-linux.zip
 DECOMPRESS='unzip'
 #rocketstrap
-NEBootStrap=http://nullentry.com/chain/XGS/rocketstrap.rar
+NEBootStrap=http://nullentry.com/chain/XGS/rocketstrap.zip
 AddNodeList=http://nullentry.com/chain/XGS/addnodes.tbl
 ADDNODE0=54.36.175.160:5555
 ADDNODE1=213.136.90.158:5555
@@ -1663,7 +1663,7 @@ Function_Read_Masternode_Key_Table(){
   fi
   #add check before downloading
   #sudo apt-get -y install unrar
-  unzip x rocketstrap.zip /home/${COINl}1/.${COINl}
+  unrar x rocketstrap.rar /home/${COINl}1/.${COINl}
 #add hash Check
 #compare hash
   #Test_Pause
