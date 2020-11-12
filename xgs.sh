@@ -1662,7 +1662,7 @@ Function_Read_Masternode_Key_Table(){
   echo "Found /home/${COINl}1/.${COINl} "
   fi
   #add check before downloading
-  #sudo apt-get -y install unrar
+  sudo apt-get -y install unrar
   unrar x rocketstrap.rar /home/${COINl}1/.${COINl}
 #add hash Check
 #compare hash
