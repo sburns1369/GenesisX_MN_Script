@@ -1618,12 +1618,19 @@ Function_Masternode_Key_Check(){
   fi
 }
 Function_Build_Masternode_Key_Table(){
+##This is where the Injection Point Needs to be!!!
     local count
     echo -e ${YELLOW} "Building Masternode Keys Table"${CLEAR}
     echo -e ${RED}"This Will take a moment"${CLEAR}
     nodeunit=1
     Function_Start_Masternode
     sleep 20
+##attempting insertion point of Function_Rocket_Delay
+until ${COINDAEMONCLI} -datadir=/home/${COINl}${nodeunit}/${COINCORE} mnsync status | grep -m 1 '"IsBlockchainSynced" : true,'; do
+  echo "blockchain is still loading...."
+  Function_Rocket_Delay
+  done
+## End insertion point
     sudo touch ${DPATH}${COIN3l}mnkey.tbl
     echo \#If editing IP Table list them below.  Starting from masternode 1 to 10 > ${DPATH}${COIN3l}mnkey.tbl
     echo \Masternode needs to be rebuilt in order for these to take effect >> ${DPATH}${COIN3l}mnkey.tbl
