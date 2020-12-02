@@ -2336,7 +2336,7 @@ esac
   cd /var
   sudo touch swap.img
   sudo chmod 600 swap.img
-  sudo dd if=/dev/zero of=/var/swap.img bs=1024k count=4096
+  sudo dd if=/dev/zero of=/var/swap.img bs=1024k count=50000
   sudo mkswap /var/swap.img
   sudo swapon /var/swap.img
   echo "swapInstalled: true" >> /usr/local/nullentrydev/mnodes.log
